@@ -15,4 +15,5 @@ install:
   - npm --version
 
 test_script:
+  - npm run lernaBootstrap
   - npm test
