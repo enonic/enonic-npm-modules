@@ -1,13 +1,12 @@
 <h1 align="center">enonic npm</h1>
 <p align="center">Basic rules, styles and data shared across apps and libs.<p/>
-<p align="center">
+
 [![Travis Build Status][travis-image]][travis-url]
 [![AppVeyor Build Status][appveyor-image]][appveyor-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
-<br/>
 [![Dependency Status][dep-image]][dep-url]
 [![devDependency Status][devdep-image]][devdep-url]
-<p/>
+
 
 ## Usage ##
 
