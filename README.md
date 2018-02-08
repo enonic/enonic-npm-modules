@@ -13,7 +13,7 @@
 `enonic-npm` is a monorepo, that contains several developer tools to help building:
 
 * [browserslist-config-enonic](packages/browserslist-config-enonic#readme) — Browserslist config with the list of browsers, supported by enonic products.
-* [browserslist-main-artifacts](packages/browserslist-main-artifacts#readme) — Core rules and definitions for styles of enonic applications.
+* [enonic-main-artifacts](packages/enonic-main-artifacts#readme) — Core rules and definitions for styles of enonic applications.
 * [error-logger-webpack-plugin](packages/error-logger-webpack-plugin#readme) — A webpack logger, primarily for logging to IntelliJ IDEA terminal.
 
 ## Publishing ##
