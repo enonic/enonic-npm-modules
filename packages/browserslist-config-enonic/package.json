@@ -1,0 +1,26 @@
+{
+  "name": "browserslist-config-enonic",
+  "version": "1.0.0",
+  "description": "Browserslist config for Enonic applications",
+  "keywords": [
+    "browserslist",
+    "browserslist-config",
+    "config",
+    "enonic"
+  ],
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "repository": "https://github.com/enonic/enonic-npm/packages/browserslist-config-enonic",
+  "author": "edloidas <edloidas@gmail.com> (https://edloidas.com)",
+  "bugs": {
+    "url": "https://github.com/enonic/enonic-npm/issues"
+  },
+  "homepage": "https://github.com/enonic/enonic-npm/packages/browserslist-config-enonic#readme",
+  "license": "GPL-3.0",
+  "engines": {
+    "node": ">= 8.9.4",
+    "npm": ">= 5.6.0"
+  }
+}

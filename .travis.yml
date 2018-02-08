@@ -1,0 +1,15 @@
+git:
+  depth: 1
+sudo: false
+cache:
+  directories:
+    - $HOME/.npm
+language: node_js
+env: TRAVIS_CI=true
+
+node_js:
+  - "9"
+  - "8"
+
+script:
+  - npm run report

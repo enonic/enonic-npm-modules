@@ -1,0 +1,47 @@
+{
+  "name": "enonic-npm",
+  "version": "1.0.0",
+  "description": "Bundle of core @enonic packages with rules, styles, and plugins.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enonic/enonic-npm.git"
+  },
+  "author": "Mikita Taukachou <edloidas@gmail.com> (https://edloidas.com)",
+  "contributors": [
+    "Alan Semenov <asl@enonic.com> (https://enonic.com)",
+    "Pavel Milkevich <pmi@enonic.com> (https://enonic.com)"
+  ],
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/enonic/enonic-npm/issues"
+  },
+  "homepage": "https://github.com/enonic/enonic-npm#readme",
+  "scripts": {
+    "test": "jest",
+    "cover": "jest --coverage",
+    "report": "node_modules/.bin/jest --coverage && cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
+    "precommit": "lint-staged",
+    "prepush": "npm test",
+    "lint": "eslint --fix ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "browserslist": "^2.11.3",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
+    "jest": "^22.2.1",
+    "lerna": "^2.8.0",
+    "lint-staged": "^6.1.0",
+    "prettier": "^1.10.2"
+  },
+  "engines": {
+    "node": ">= 8.9.4",
+    "npm": ">= 5.6.0"
+  }
+}

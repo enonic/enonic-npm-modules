@@ -1,0 +1,27 @@
+{
+  "name": "error-logger-webpack-plugin",
+  "version": "0.0.2",
+  "description": "Log webpack errors in readable format, suitable for navigation.",
+  "keywords": [
+    "webpack",
+    "plugin",
+    "error",
+    "logger"
+  ],
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "src"
+  ],
+  "repository": "https://github.com/enonic/enonic-npm/packages/error-logger-webpack-plugin",
+  "author": "Taukachou Mikita <edloidas@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/enonic/enonic-npm/issues"
+  },
+  "homepage": "https://github.com/enonic/enonic-npm/packages/error-logger-webpack-plugin#readme",
+  "engines": {
+    "node": ">= 8.9.4",
+    "npm": ">= 5.6.0"
+  }
+}
