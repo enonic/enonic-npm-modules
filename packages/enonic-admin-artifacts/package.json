@@ -1,5 +1,5 @@
 {
-  "name": "enonic-main-artifacts",
+  "name": "enonic-admin-artifacts",
   "version": "1.0.0",
   "description": "Log webpack errors in readable format, suitable for navigation.",
   "keywords": [
@@ -10,13 +10,13 @@
     "index.less",
     "src"
   ],
-  "repository": "https://github.com/enonic/enonic-npm/packages/enonic-main-artifacts",
+  "repository": "https://github.com/enonic/enonic-npm/packages/enonic-admin-artifacts",
   "author": "Taukachou Mikita <edloidas@gmail.com>",
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/enonic/enonic-npm/issues"
   },
-  "homepage": "https://github.com/enonic/enonic-npm/packages/enonic-main-artifacts#readme",
+  "homepage": "https://github.com/enonic/enonic-npm/packages/enonic-admin-artifacts#readme",
   "devDependencies": {
     "less": "^2.7.3"
   },

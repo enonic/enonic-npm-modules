@@ -1,11 +1,11 @@
-<h1 align="center">enonic-main-artifacts</h1>
+<h1 align="center">enonic-admin-artifacts</h1>
 
 Browserslist config with the list of browsers, supported by @enonic products.
 
 ## Install
 
 ```
-npm install --save-dev enonic-main-artifacts
+npm install --save-dev enonic-admin-artifacts
 ```
 
 ## Usage
@@ -13,5 +13,5 @@ npm install --save-dev enonic-main-artifacts
 Import the package from your `.less` file:
 
 ```less
-@import '~enonic-main-artifacts'
+@import '~enonic-admin-artifacts'
 ```
