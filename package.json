@@ -1,11 +1,11 @@
 {
-  "name": "enonic-npm",
+  "name": "enonic-npm-modules",
   "version": "1.0.0",
   "description": "Bundle of core @enonic packages with rules, styles, and plugins.",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/enonic/enonic-npm.git"
+    "url": "git+https://github.com/enonic/enonic-npm-modules.git"
   },
   "author": "Mikita Taukachou <edloidas@gmail.com> (https://edloidas.com)",
   "contributors": [
@@ -14,9 +14,9 @@
   ],
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/enonic/enonic-npm/issues"
+    "url": "https://github.com/enonic/enonic-npm-modules/issues"
   },
-  "homepage": "https://github.com/enonic/enonic-npm#readme",
+  "homepage": "https://github.com/enonic/enonic-npm-modules#readme",
   "scripts": {
     "test": "jest",
     "cover": "jest --coverage",

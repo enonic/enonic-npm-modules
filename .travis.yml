@@ -12,5 +12,4 @@ node_js:
   - "8"
 
 script:
-  - npm run lernaBootstrap
   - npm run report

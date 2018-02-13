@@ -1,6 +1,6 @@
 Publishing packages
 ===
-Since `enonic-npm` is a monorepo, all packages should be published using [Lerna](https://github.com/lerna/lerna). It's still possible to publish with `npm` or `yarn`, but it's not recommended.
+Since `enonic-npm-modules` is a monorepo, all packages should be published using [Lerna](https://github.com/lerna/lerna). It's still possible to publish with `npm` or `yarn`, but it's not recommended.
 
 ### Prepare ###
 
@@ -34,7 +34,7 @@ To use lerna [commands](https://github.com/lerna/lerna#commands) directly, you m
 Here are the common steps for changing and publishing your code:
 
 1. Update something in the packages and **commit** your changes;
-2. Run `npm run lernaPublish`;
+2. Run `npm run publish:all`;
 3. Proceed with the steps in the prompt.
 
 ### Something went wrong ###

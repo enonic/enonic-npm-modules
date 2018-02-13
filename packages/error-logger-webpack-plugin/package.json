@@ -13,7 +13,7 @@
     "index.js",
     "src"
   ],
-  "repository": "https://github.com/enonic/enonic-npm/packages/error-logger-webpack-plugin",
+  "repository": "https://github.com/enonic/enonic-npm-modules/packages/error-logger-webpack-plugin",
   "author": "edloidas <edloidas@gmail.com> (https://edloidas.com)",
   "contributors": [
     "Alan Semenov <asl@enonic.com> (https://enonic.com)",
@@ -21,9 +21,9 @@
   ],
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/enonic/enonic-npm/issues"
+    "url": "https://github.com/enonic/enonic-npm-modules/issues"
   },
-  "homepage": "https://github.com/enonic/enonic-npm/packages/error-logger-webpack-plugin#readme",
+  "homepage": "https://github.com/enonic/enonic-npm-modules/packages/error-logger-webpack-plugin#readme",
   "engines": {
     "node": ">= 8.9.4",
     "npm": ">= 5.6.0"
