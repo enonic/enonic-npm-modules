@@ -29,7 +29,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "browserslist": "^2.11.3",
     "coveralls": "^3.0.0",
     "eslint": "^4.17.0",
     "eslint-config-airbnb-base": "^12.1.0",
