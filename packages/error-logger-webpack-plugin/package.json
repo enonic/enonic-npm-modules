@@ -14,7 +14,7 @@
     "src"
   ],
   "repository": "https://github.com/enonic/enonic-npm/packages/error-logger-webpack-plugin",
-  "author": "Taukachou Mikita <edloidas@gmail.com>",
+  "author": "edloidas <edloidas@gmail.com> (https://edloidas.com)",
   "contributors": [
     "Alan Semenov <asl@enonic.com> (https://enonic.com)",
     "Pavel Milkevich <pmi@enonic.com> (https://enonic.com)"

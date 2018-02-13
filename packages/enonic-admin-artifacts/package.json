@@ -1,9 +1,12 @@
 {
   "name": "enonic-admin-artifacts",
-  "version": "1.0.0",
-  "description": "Log webpack errors in readable format, suitable for navigation.",
+  "version": "0.0.1",
+  "description": "Bundle of LESS styles, shared between admin and applications.",
   "keywords": [
-    "enonic"
+    "enonic",
+    "styles",
+    "less",
+    "artifacts"
   ],
   "main": "index.less",
   "files": [
@@ -11,7 +14,11 @@
     "src"
   ],
   "repository": "https://github.com/enonic/enonic-npm/packages/enonic-admin-artifacts",
-  "author": "Taukachou Mikita <edloidas@gmail.com>",
+  "author": "edloidas <edloidas@gmail.com> (https://edloidas.com)",
+  "contributors": [
+    "Alan Semenov <asl@enonic.com> (https://enonic.com)",
+    "Pavel Milkevich <pmi@enonic.com> (https://enonic.com)"
+  ],
   "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/enonic/enonic-npm/issues"
