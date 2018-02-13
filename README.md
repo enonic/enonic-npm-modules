@@ -4,7 +4,6 @@
 [![Travis Build Status][travis-image]][travis-url]
 [![AppVeyor Build Status][appveyor-image]][appveyor-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
-[![Dependency Status][dep-image]][dep-url]
 [![devDependency Status][devdep-image]][devdep-url]
 
 
@@ -35,8 +34,5 @@ Before publishing the changes in any package, read the [manual](PUBLISH.md).
 [coveralls-url]: https://coveralls.io/github/enonic/enonic-npm-modules?branch=master
 [coveralls-image]: https://coveralls.io/repos/github/enonic/enonic-npm-modules/badge.svg?branch=master
 
-[dep-url]: https://david-dm.org/enonic/enonic-npm-modules
-[dep-image]: https://david-dm.org/enonic/enonic-npm-modules.svg
-
-[devdep-url]: https://david-dm.org/enonic/enonic-npm-modules#info=devDependencies
+[devdep-url]: https://david-dm.org/enonic/enonic-npm-modules?type=dev
 [devdep-image]: https://david-dm.org/enonic/enonic-npm-modules/dev-status.svg
