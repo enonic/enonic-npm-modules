@@ -24,8 +24,8 @@
     "precommit": "lint-staged",
     "prepush": "npm test",
     "lint": "eslint --fix .",
-    "lernaPublish": "lerna publish",
-    "lernaBootstrap": "lerna bootstrap"
+    "publish:all": "lerna publish",
+    "postinstall": "lerna bootstrap"
   },
   "dependencies": {},
   "devDependencies": {

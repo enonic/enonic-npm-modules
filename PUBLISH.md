@@ -22,10 +22,12 @@ For more information read the [documentation](https://docs.npmjs.com/cli/adduser
 To publish packages with Lerna, you can just run the npm script:
 
 ```bash
-npm run lernaPublish
+npm run publish:all
 ```
 
-To use other [commands](https://github.com/lerna/lerna#commands), you may need to install it globally.
+Lerna will try to publish each package, that has changes since the last release, even if the README file is the only file that has changes. Unfortunately, it can't be avoided.
+
+To use lerna [commands](https://github.com/lerna/lerna#commands) directly, you may need to install it globally.
 
 ### Publish ###
 

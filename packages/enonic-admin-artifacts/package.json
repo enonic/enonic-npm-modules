@@ -1,7 +1,7 @@
 {
   "name": "enonic-admin-artifacts",
   "version": "0.0.1",
-  "description": "Bundle of LESS styles, shared between admin and applications.",
+  "description": "Core rules and definitions for styles of enonic applications",
   "keywords": [
     "enonic",
     "styles",

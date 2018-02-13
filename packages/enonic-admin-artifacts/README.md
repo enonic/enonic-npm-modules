@@ -1,6 +1,6 @@
 <h1 align="center">enonic-admin-artifacts</h1>
 
-Bundle of LESS styles, shared between admin and applications.
+Core rules and definitions for styles of enonic applications.
 
 ## Install ##
 
