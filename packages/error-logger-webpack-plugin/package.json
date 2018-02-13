@@ -1,6 +1,6 @@
 {
   "name": "error-logger-webpack-plugin",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Log webpack errors in readable format, suitable for navigation.",
   "keywords": [
     "webpack",
