@@ -235,3 +235,13 @@
     font-style: italic;
   }
 }
+
+.form-element-spacing(@size: 20px) {
+  &:not(:first-of-type) {
+    margin-top: @size;
+  }
+
+  &:not(:last-of-type) {
+    margin-bottom: @size;
+  }
+}
