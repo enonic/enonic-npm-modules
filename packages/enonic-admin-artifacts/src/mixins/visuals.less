@@ -1,0 +1,75 @@
+@import '../colors';
+
+.focusable() {
+  &:focus:not(:disabled) {
+    box-sizing: border-box;
+    box-shadow: 0 0 5px @admin-input-blue;
+    border: 1px solid @admin-input-blue;
+  }
+}
+
+.notSelectable() {
+  user-select: none;
+}
+
+.selectable() {
+  user-select: all;
+}
+
+.noAppearance() {
+  appearance: none;
+}
+
+.ellipsis() {
+  overflow: hidden;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+
+.material-layer-shadow() {
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3), 0px 5px 10px 0px rgba(0, 0, 0, 0.3); // ambient + key shadow
+}
+
+.flat-mixin(@bgColor: @admin-white) {
+  border-radius: 0;
+  background-image: none;
+  box-shadow: none;
+  background-color: @bgColor;
+}
+
+.placeholder(@size, @style) {
+  &::-webkit-input-placeholder {
+    font-size: @size;
+    font-style: @style;
+  }
+
+  &::-moz-placeholder {
+    font-size: @size;
+    font-style: @style;
+  }
+
+  &:-moz-placeholder {
+    font-size: @size;
+    font-style: @style;
+  }
+
+  &:-ms-input-placeholder {
+    font-size: @size;
+    font-style: @style;
+  }
+}
+
+.placeholderColor(@color) {
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+  &:-moz-placeholder {
+    color: @color;
+  }
+  &::-moz-placeholder {
+    color: @color;
+  }
+  &:-ms-input-placeholder {
+    color: @color;
+  }
+}

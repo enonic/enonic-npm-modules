@@ -1,0 +1,14 @@
+@import '../../src/mixins/animations';
+
+.test-block {
+  .scale(2);
+
+  .rotate(90deg);
+
+  .animation(pulsate);
+  .animation(pulsate, 2s, 0s, ease-in);
+
+  .color-transition();
+
+  .background-color-transition();
+}

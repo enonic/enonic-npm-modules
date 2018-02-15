@@ -1,0 +1,62 @@
+@import '../colors';
+@import '../font';
+@import 'visuals';
+
+.app-icon-mixin(@hideText: false, @invertIcon: false) {
+  .home-button {
+    position: relative;
+    display: table;
+    min-width: 25px;
+    padding: 0 15px 0 0;
+    height: 100%;
+    font-family: @admin-font-family;
+    color: @admin-bg-light-gray;
+    z-index: 1;
+
+    .app-icon {
+      width: 25px;
+      height: 28px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+
+      & when (@invertIcon = true) {
+        filter: invert(100%);
+      }
+
+    }
+    .app-name {
+      display: table-cell;
+      vertical-align: middle;
+      padding-left: 35px;
+      font-size: 15px;
+      text-transform: uppercase;
+      line-height: inherit;
+
+      & when (@hideText = true) {
+        display: none;
+      }
+    }
+
+    &.clickable {
+      &:hover {
+        opacity: 0.5;
+      }
+      cursor: pointer;
+    }
+  }
+}
+
+.icon-close-mixin(@right: 0) {
+  .icon-close {
+    .focusable();
+    position: absolute;
+    top: 50%;
+    right: @right;
+    margin-top: -6px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}

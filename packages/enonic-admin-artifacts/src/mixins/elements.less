@@ -1,0 +1,237 @@
+@import '../prefix';
+@import '../colors';
+@import '../font';
+@import 'animations';
+@import 'visuals';
+
+.dropcircle(@radius: 200px) {
+  position: absolute;
+  display: block;
+  margin: 0 auto;
+  top: 50%;
+  left: 50%;
+  margin-top: -@radius;
+  margin-left: -@radius;
+  background-color: @admin-blue;
+  width: 2 * @radius;
+  height: 2 * @radius;
+  line-height: 2 * @radius;
+  color: @admin-white;
+  content: attr(data-drop);
+  font-weight: normal;
+
+  box-sizing: border-box;
+  border-radius: @radius;
+  box-shadow: 0 0 10px @admin-shadow-gray;
+  .animation(pulsate, 4s);
+}
+
+.default-slick-cell-styling(@padding: 8px) {
+  border: none;
+  padding: @padding;
+  cursor: default;
+  box-sizing: border-box;
+}
+
+.arrow(@color, @height) {
+
+  &:before {
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border: @height solid transparent;
+  }
+
+  &.bottom {
+    margin-top: @height;
+
+    &:before {
+      border-bottom-color: @color;
+      top: -2 * @height;
+      left: 50%;
+      margin-left: -@height;
+    }
+  }
+
+  &.left {
+    margin-right: @height;
+
+    &:before {
+      border-left-color: @color;
+      right: -2 * @height;
+      top: 50%;
+      margin-top: -@height;
+    }
+  }
+
+  &.top {
+    margin-bottom: @height;
+
+    &:before {
+      border-top-color: @color;
+      bottom: -2 * @height;
+      left: 50%;
+      margin-left: -@height;
+    }
+  }
+
+  &.right {
+    margin-left: @height;
+
+    &:before {
+      border-right-color: @color;
+      left: -2 * @height;
+      top: 50%;
+      margin-top: -@height;
+    }
+  }
+}
+
+.watermark-text(@font-size: 16px, @ellipsis: false) {
+  font-size: @font-size;
+  font-family: @admin-font-family;
+  color: lightgray;
+  top: 50%;
+  text-align: center;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  & when (@ellipsis = true) {
+    .ellipsis();
+  }
+}
+
+.picker() {
+  .@{_COMMON_PREFIX}button {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: transparent;
+    padding: 0 6px;
+    border: 1px solid transparent;
+    font-size: 20px;
+    line-height: 0px;
+    &:before {
+      color: @admin-dark-gray;
+      vertical-align: middle;
+    }
+    &:hover, &:active {
+      background: transparent;
+      &:before {
+        color: @admin-dark-gray;
+      }
+    }
+  }
+
+  .@{_COMMON_PREFIX}wrapper {
+    position: relative;
+
+    .@{_COMMON_PREFIX}text-input {
+      width: 100%;
+      padding: 4px 32px 4px 5px;
+      line-height: 27px;
+    }
+  }
+}
+
+.picker-dialog(@width: 100%, @padding: 10px) {
+  position: absolute;
+  display: none;
+  top: auto;
+  left: auto;
+  bottom: auto;
+  right: auto;
+  height: auto;
+  width: @width;
+  z-index: 100;
+  padding: @padding;
+  background-color: #ffffff;
+  .material-layer-shadow();
+}
+
+.home-main-container-mixin() {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  .center-panel {
+    width: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 0;
+    bottom: 0;
+  }
+
+  .lazy-image {
+    width: 100%;
+    min-height: 100%;
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+
+    transition: opacity 2s;
+    &.empty {
+      opacity: 0;
+    }
+  }
+}
+
+.headers-mixin() {
+  h1 {
+    font-size: 34px;
+    line-height: 40px;
+  }
+
+  h2 {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  h3 {
+    font-size: 26px;
+    line-height: 40px;
+  }
+
+  h4 {
+    font-size: 22px;
+    line-height: 20px;
+  }
+
+  h5 {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  h6 {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.content-status-mixin() {
+  .equal, .online {
+    color: @admin-green;
+    &_pending {
+      color: @admin-orange;
+    }
+    &_expired {
+      color: @admin-red;
+    }
+  }
+  .offline {
+    color: @admin-font-gray1;
+  }
+  .modified {
+    font-style: italic;
+  }
+}
