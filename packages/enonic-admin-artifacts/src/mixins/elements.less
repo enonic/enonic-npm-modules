@@ -116,7 +116,7 @@
     padding: 0 6px;
     border: 1px solid transparent;
     font-size: 20px;
-    line-height: 0px;
+    line-height: 0;
     &:before {
       color: @admin-dark-gray;
       vertical-align: middle;
@@ -243,5 +243,28 @@
 
   &:not(:last-of-type) {
     margin-bottom: @size;
+  }
+}
+
+.button(@color: @form-button-font, @bg: @form-button-bg, @hoverColor: @color, @hoverBg: lighten(@bg, 10%), @useFocus: true) {
+  .button-background(@bg, @hoverBg);
+  .button-foreground(@color, @hoverColor, @admin-button-blue1);
+  box-sizing: border-box;
+
+  display: inline-block;
+  padding: 1px 19px;
+  margin: 0;
+  cursor: pointer;
+
+  span {
+    line-height: 24px;
+    font-size: 14px;
+    font-family: @admin-font-family;
+    .color-transition();
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
   }
 }

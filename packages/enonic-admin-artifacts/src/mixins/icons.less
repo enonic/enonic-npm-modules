@@ -2,6 +2,23 @@
 @import '../font';
 @import 'visuals';
 
+.icon-mixin(@fontface) {
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  speak: none;
+  line-height: 1;
+  color: @admin-dark-gray;
+
+  &:before,
+  &:after {
+    font-family: @fontface, monospace !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
 .app-icon-mixin(@hideText: false, @invertIcon: false) {
   .home-button {
     position: relative;

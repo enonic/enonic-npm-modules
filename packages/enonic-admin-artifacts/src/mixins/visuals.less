@@ -1,4 +1,5 @@
 @import '../colors';
+@import '../font';
 
 .focusable() {
   &:focus:not(:disabled) {
@@ -27,7 +28,7 @@
 }
 
 .material-layer-shadow() {
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3), 0px 5px 10px 0px rgba(0, 0, 0, 0.3); // ambient + key shadow
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3), 0 5px 10px 0 rgba(0, 0, 0, 0.3); // ambient + key shadow
 }
 
 .flat-mixin(@bgColor: @admin-white) {
@@ -78,7 +79,7 @@
   background-color: @bgcolor;
 
   &:focus {
-    box-shadow: 0px 0px 5px @color;
+    box-shadow: 0 0 5px @color;
   }
 }
 
@@ -92,7 +93,7 @@
     }
   }
   &:focus {
-    box-shadow: 0px 0px 5px @color;
+    box-shadow: 0 0 5px @color;
     border: 1px solid @color;
   }
 }
@@ -101,4 +102,45 @@
   background-color: @color;
   -webkit-transition: background-color 200ms cubic-bezier(0.0, 0.0, 0.2, 1);
   transition: background-color 200ms cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.button-background(@bg: @form-button-bg, @hoverBg: lighten(@bg, 10%)) {
+  background-color: @bg;
+
+  &:hover:not(:disabled) {
+    background-color: @hoverBg;
+  }
+}
+
+.button-foreground(@color: @form-button-font, @hoverColor: darken(@color, 10%), @activeColor: @color) {
+  &:before, span {
+    color: @color;
+  }
+
+  &:hover:not(:disabled) {
+    &:before, span {
+      color: @hoverColor;
+    }
+  }
+
+  &.active {
+    &:hover:not(:disabled) {
+      &:before, span {
+        color: darken(@activeColor, 10%);
+      }
+    }
+
+    &:before, span {
+      color: @activeColor;
+    }
+  }
+}
+
+.input-border(@color: @admin-medium-gray-border) {
+  border: 1px solid @color;
+}
+
+.input-font(@size: 15px) {
+  font-family: @admin-font-family;
+  font-size: @size;
 }
