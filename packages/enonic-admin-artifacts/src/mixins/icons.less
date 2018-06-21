@@ -1,5 +1,6 @@
 @import '../colors';
 @import '../font';
+@import '../size';
 @import 'visuals';
 
 .icon-mixin(@fontface) {
@@ -21,21 +22,17 @@
 
 .app-icon-mixin(@hideText: false, @invertIcon: false) {
   .home-button {
-    position: relative;
-    display: table;
-    min-width: 25px;
-    padding: 0 15px 0 0;
+    display: flex;
     height: 100%;
     font-family: @admin-font-family;
     color: @admin-bg-light-gray;
     z-index: 1;
+    margin-right: 35px;
+    white-space: nowrap;
 
     .app-icon {
       width: 25px;
-      height: 28px;
-      position: absolute;
-      top: 0;
-      bottom: 0;
+      height: @app-header-height;
       margin: auto;
 
       & when (@invertIcon = true) {
@@ -44,12 +41,10 @@
 
     }
     .app-name {
-      display: table-cell;
-      vertical-align: middle;
-      padding-left: 35px;
+      padding-left: 10px;
       font-size: 15px;
       text-transform: uppercase;
-      line-height: inherit;
+      line-height: @app-header-height;
 
       & when (@hideText = true) {
         display: none;
