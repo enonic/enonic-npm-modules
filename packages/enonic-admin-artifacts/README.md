@@ -1,6 +1,6 @@
 <h1 align="center">enonic-admin-artifacts</h1>
 
-Core rules and definitions for styles of enonic applications.
+Core rules and definitions for styles of Enonic applications.
 
 ## Install ##
 
