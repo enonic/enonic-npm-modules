@@ -1,6 +1,6 @@
 {
   "name": "enonic-admin-artifacts",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Core rules and definitions for styles of enonic applications",
   "keywords": [
     "enonic",
@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/enonic/enonic-npm-modules/packages/enonic-admin-artifacts#readme",
   "devDependencies": {
-    "less": "^2.7.3",
-    "hoek": "^5.0.3"
+    "hoek": "^5.0.3",
+    "less": "^2.7.3"
   },
   "engines": {
     "node": ">= 8.9.4",
