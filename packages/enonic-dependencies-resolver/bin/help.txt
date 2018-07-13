@@ -5,6 +5,7 @@ Options:
   --prefix <path>  # Prefix base directory with specific path.
   --file <path>    # Write output to file by specific path.
   --level <number> # Maximum levels to log.
+  --internal       # Show graph with the internal dependencies only.
   --help           # Print the module options and usage
 
 Arguments:

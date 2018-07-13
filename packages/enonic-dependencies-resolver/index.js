@@ -4,17 +4,15 @@ const resolve = require('./src/resolve');
 const generate = require('./src/generate');
 const print = require('./src/print');
 
-const GLOB_ALL = './**/*.ts';
+const FILES_ALL = './**/*.ts';
 
 module.exports = async function resolver(
-  globPath = GLOB_ALL,
-  prefix,
-  file,
-  maxLevel = Number.MAX_SAFE_INTEGER
+  pattern = FILES_ALL,
+  { prefix, file, level = Number.MAX_SAFE_INTEGER, internal }
 ) {
   const base = prefix || './';
-  const basePath = path.join(base, GLOB_ALL);
-  const filesPath = path.join(base, globPath);
+  const basePath = path.join(base, FILES_ALL);
+  const filesPath = path.join(base, pattern);
 
   console.log('Finding files...');
   const files = await find(filesPath);
@@ -30,6 +28,6 @@ module.exports = async function resolver(
   console.log('Creating dependencies graph...');
   const dependencies = generate(baseFiles, exports);
 
-  console.log('Parsing graph...');
-  print(dependencies, file, maxLevel);
+  console.log('Parsing graph...\n');
+  print(dependencies, file, level, !!internal);
 };

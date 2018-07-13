@@ -10,12 +10,12 @@ function createMarker(external, recursive) {
   return '   - ';
 }
 
-function log(file, text) {
+function createLogger(fileName) {
+  const file = fileName ? path.resolve(fileName) : null;
   if (file) {
-    fs.writeFileSync(file, text, 'utf8');
-  } else {
-    console.log(text);
+    return text => fs.writeFileSync(file, text, 'utf8');
   }
+  return text => console.log(text);
 }
 
 /*
@@ -36,7 +36,7 @@ or numerate them
 [4] D - 2
 
 */
-function printGroup(map, entry, file, maxLevel, level = 0, chain = []) {
+function printGroup(map, entry, logger, maxLevel, level = 0, chain = []) {
   try {
     if (level > maxLevel) {
       return;
@@ -45,11 +45,11 @@ function printGroup(map, entry, file, maxLevel, level = 0, chain = []) {
     const recursive = chain.includes(entry);
     const marker = createMarker(external, recursive);
     const indent = level > 0 ? '    '.repeat(level - 1).concat(marker) : '';
-    log(file, `${indent}${entry}\n`);
+    logger(`${indent}${entry}`);
     const { depFor } = map.get(entry) || {};
     if (depFor && !recursive) {
       depFor.forEach(dep =>
-        printGroup(map, dep, file, maxLevel, level + 1, chain.concat(entry))
+        printGroup(map, dep, logger, maxLevel, level + 1, chain.concat(entry))
       );
     }
   } catch (err) {
@@ -58,10 +58,10 @@ function printGroup(map, entry, file, maxLevel, level = 0, chain = []) {
 }
 
 module.exports = function print(map, fileName, maxLevel) {
-  const file = fileName ? path.resolve(fileName) : null;
+  const logger = createLogger(fileName);
   map.forEach(({ depOn }, entry) => {
     if (!depOn || depOn.length < 1) {
-      printGroup(map, entry, file, maxLevel);
+      printGroup(map, entry, logger, maxLevel);
     }
   });
 };

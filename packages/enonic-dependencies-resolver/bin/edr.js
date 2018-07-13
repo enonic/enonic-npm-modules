@@ -9,11 +9,17 @@ const fs = require('fs');
 const resolve = require('../index');
 
 (function cmd() {
-  const { prefix, file, level, help } = argv;
+  const { prefix, file, level, internal, help } = argv;
   if (help) {
     const helpPath = path.resolve(__dirname, './help.txt');
     fs.createReadStream(helpPath).pipe(process.stdout);
   } else {
-    resolve(argv._[0], prefix, !!file, level);
+    const flags = {
+      prefix,
+      file,
+      level,
+      internal
+    };
+    resolve(argv._[0], flags);
   }
 })();
