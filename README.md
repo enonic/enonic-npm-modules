@@ -14,6 +14,7 @@
 * [browserslist-config-enonic](packages/browserslist-config-enonic#readme) — Browserslist config with the list of browsers, supported by enonic products.
 * [enonic-admin-artifacts](packages/enonic-admin-artifacts#readme) — Core rules and definitions for styles of enonic applications.
 * [error-logger-webpack-plugin](packages/error-logger-webpack-plugin#readme) — A webpack logger, primarily for logging to IntelliJ IDEA terminal.
+* [enonic-dependencies-resolver](packages/enonic-dependencies-resolver#readme) — A CLI tool to generate dependencies graph for selected files.
 
 To install all dependencies in all packages, simply run `npm install` (will run `lerna bootstrap` afterwards).
 

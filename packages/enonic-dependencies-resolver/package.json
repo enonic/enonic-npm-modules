@@ -1,0 +1,46 @@
+{
+  "name": "enonic-dependencies-resolver",
+  "version": "1.0.0",
+  "description": "A CLI tool to generate dependencies graph for selected files.",
+  "keywords": [
+    "enonic",
+    "dependency",
+    "dependencies",
+    "resolver"
+  ],
+  "main": "index.js",
+  "bin": {
+    "edr": "bin/edr.js"
+  },
+  "files": [
+    "index.js",
+    "bin",
+    "src"
+  ],
+  "repository": "https://github.com/enonic/enonic-npm-modules/packages/enonic-dependencies-resolver",
+  "author": "edloidas <edloidas@gmail.com> (https://edloidas.com)",
+  "contributors": [
+    "Alan Semenov <asl@enonic.com> (https://enonic.com)",
+    "Pavel Milkevich <pmi@enonic.com> (https://enonic.com)"
+  ],
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/enonic/enonic-npm-modules/issues"
+  },
+  "homepage": "https://github.com/enonic/enonic-npm-modules/packages/enonic-dependencies-resolver#readme",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^23.4.0"
+  },
+  "engines": {
+    "node": ">= 8.11.3",
+    "npm": ">= 5.6.0"
+  },
+  "dependencies": {
+    "glob": "^7.1.2",
+    "minimist": "^1.2.0",
+    "pify": "^3.0.0"
+  }
+}
