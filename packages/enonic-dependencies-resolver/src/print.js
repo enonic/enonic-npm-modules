@@ -18,30 +18,25 @@ function createLogger(fileName) {
   return text => console.log(text);
 }
 
-/*
---first, --closest
-Display items in the chain only if they were not present in other chains
-A - B - C
-B - C
-C
-D - B - C
-to
-A - B - C
-D -
+const isInternal = (map, entry) => map.has(entry);
+const isExternal = (map, entry) => !isInternal(map, entry);
 
-or numerate them
-[1] A - 2
-[2] B - 3
-[3] C
-[4] D - 2
+function isBranchInternal(map, entry, chain = []) {
+  const recursive = chain.includes(entry);
+  const { depFor = [] } = map.get(entry) || {};
+  return (
+    recursive ||
+    (isInternal(map, entry) &&
+      depFor.every(v => isBranchInternal(map, v, chain.concat(entry))))
+  );
+}
 
-*/
 function printGroup(map, entry, logger, maxLevel, level = 0, chain = []) {
   try {
     if (level > maxLevel) {
       return;
     }
-    const external = !map.has(entry);
+    const external = isExternal(map, entry);
     const recursive = chain.includes(entry);
     const marker = createMarker(external, recursive);
     const indent = level > 0 ? '    '.repeat(level - 1).concat(marker) : '';
@@ -57,10 +52,13 @@ function printGroup(map, entry, logger, maxLevel, level = 0, chain = []) {
   }
 }
 
-module.exports = function print(map, fileName, maxLevel) {
+module.exports = function print(map, fileName, maxLevel, internal) {
   const logger = createLogger(fileName);
   map.forEach(({ depOn }, entry) => {
     if (!depOn || depOn.length < 1) {
+      if (internal && !isBranchInternal(map, entry)) {
+        return;
+      }
       printGroup(map, entry, logger, maxLevel);
     }
   });
