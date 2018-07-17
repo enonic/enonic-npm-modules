@@ -8,7 +8,7 @@ const FILES_ALL = './**/*.ts';
 
 module.exports = async function resolver(
   pattern = FILES_ALL,
-  { prefix, file, level = Number.MAX_SAFE_INTEGER, internal }
+  { prefix, file, level = Number.MAX_SAFE_INTEGER, internal, reversed }
 ) {
   const base = prefix || './';
   const basePath = path.join(base, FILES_ALL);
@@ -29,5 +29,5 @@ module.exports = async function resolver(
   const dependencies = generate(baseFiles, exports);
 
   console.log('Parsing graph...\n');
-  print(dependencies, file, level, !!internal);
+  print(dependencies, file, level, !!internal, !!reversed);
 };
