@@ -5,7 +5,8 @@ Options:
   --prefix <path>  # Prefix base directory with specific path.
   --file <path>    # Write output to file by specific path.
   --level <number> # Maximum levels to log.
-  --internal       # Show graph with the internal dependencies only.
+  --internal       # Show graphs with the internal dependencies only.
+  --reversed       # Show graphs, where the root elements has zero usage across files.
   --help           # Print the module options and usage
 
 Arguments:
@@ -14,4 +15,6 @@ Arguments:
 
 Examples:
   edr --help
+  edr ./content/**/*.ts --internal
+  edr ./content/**/*.ts --internal --reversed --level 0
   edr --prefix src/main/resources/assets/admin/common/js

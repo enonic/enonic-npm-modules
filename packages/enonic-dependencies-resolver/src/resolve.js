@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 function findExports(code) {
-  const regex = /(?:export\s+)(?:abstract\s+)?(?:(?:type|interface|enum|class)\s+)([A-Za-z_\d]+)(?:\n|.+)/gi;
+  const regex = /(?:export\s+)(?:abstract\s+)?(?:(?:type|interface|enum|class|function)\s+)([A-Za-z_\d]+)(?:\n|.+)/gi;
   const result = [];
   let match = regex.exec(code);
   while (match) {

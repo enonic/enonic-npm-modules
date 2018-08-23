@@ -1,8 +1,11 @@
+const path = require('path');
 const generate = require('../src/generate');
 
 describe('generate()', () => {
   test(`Should be find only exported members`, () => {
-    const baseFiles = ['./test/data/Dependant.ts', './test/data/Dependency.ts'];
+    const baseFiles = ['data/Dependant.ts', 'data/Dependency.ts'].map(f =>
+      path.join(__dirname, f)
+    );
     const exports = new Map();
     exports.set(baseFiles[0], ['Dependant']);
     exports.set(baseFiles[1], ['Dependency']);

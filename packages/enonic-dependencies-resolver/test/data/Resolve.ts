@@ -39,3 +39,7 @@ export class Warhammer40k extends Warhammer
     return '40k';
   }
 }
+
+export function startCrusade() {
+  // For the Emperor!
+}
