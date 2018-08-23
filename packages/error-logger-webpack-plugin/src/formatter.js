@@ -24,11 +24,13 @@ const formatError = (error, showStacktrace = false) => {
     const filePath = (module && module.resource) || file;
     const from = filePath ? message.indexOf(filePath) : 0;
     return message.replace(rawLocation, `${formatedLocation}:`).substring(from);
-  } else if (isCompilerError(error) || isFileError(error)) {
+  }
+  if (isCompilerError(error) || isFileError(error)) {
     const { file, location, rawMessage } = error;
     const filePath = (error.module && error.module.resource) || file;
     return `${formatPath(filePath)}${formatLocation(location)}: ${rawMessage}`;
-  } else if (isWebpackError(error)) {
+  }
+  if (isWebpackError(error)) {
     return `${error.name}: ${error.message}`;
   }
 

@@ -4,7 +4,8 @@ const fs = require('fs');
 function createMarker(external, recursive) {
   if (external) {
     return '   E ';
-  } else if (recursive) {
+  }
+  if (recursive) {
     return '   r ';
   }
   return '   - ';
