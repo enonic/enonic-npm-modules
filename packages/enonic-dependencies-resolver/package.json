@@ -1,6 +1,6 @@
 {
   "name": "enonic-dependencies-resolver",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A CLI tool to generate dependencies graph for selected files.",
   "keywords": [
     "enonic",
