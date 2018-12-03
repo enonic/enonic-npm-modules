@@ -6,15 +6,15 @@ const createEnrtyRegExp = name =>
 module.exports = function generate(files, entries) {
   const map = new Map();
 
-  entries.forEach((exports, filePath) =>
+  entries.forEach((data, filePath) =>
     map.set(filePath, { depOn: [], depFor: [] })
   );
 
   files.forEach(file => {
     const code = fs.readFileSync(file, 'utf8');
-    entries.forEach((exports, filePath) => {
+    entries.forEach((data, filePath) => {
       if (file !== filePath) {
-        const isDependency = exports.some(
+        const isDependency = data.exports.some(
           exp => code.search(createEnrtyRegExp(exp)) >= 0
         );
         if (isDependency) {

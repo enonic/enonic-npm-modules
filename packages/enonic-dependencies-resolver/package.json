@@ -29,10 +29,20 @@
   },
   "homepage": "https://github.com/enonic/enonic-npm-modules/packages/enonic-dependencies-resolver#readme",
   "scripts": {
+    "build": "webpack",
+    "dev": "webpack --watch --hot --colors --progress --info-verbosity verbose",
     "test": "jest"
   },
   "devDependencies": {
-    "jest": "^23.4.0"
+    "@types/glob": "^7.1.1",
+    "@types/node": "^10.12.11",
+    "@types/pify": "^3.0.2",
+    "jest": "^23.4.0",
+    "ts-loader": "^5.3.1",
+    "typescript": "^3.2.1",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-node-externals": "^1.7.2"
   },
   "engines": {
     "node": ">= 8.11.3",
