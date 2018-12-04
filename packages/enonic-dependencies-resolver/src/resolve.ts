@@ -1,20 +1,22 @@
 import * as fs from 'fs';
 
 export interface ImportData {
-  module: string;
+  module: string | null;
   importedName: string;
   name: string;
 }
 
 export interface FileData {
-  module: string;
+  module: string | null;
   exports: string[];
   imports: ImportData[];
+  usages: ImportData[];
 }
 
 const buildExportsRegex = () => /(?:export\s+)(?:abstract\s+)?(?:(?:type|interface|enum|class|function)\s+)([A-Za-z_\d]+)(?:\n|.+)/gi
 const buildImportsRegex = () => /(?:\s*import\s+)([A-Za-z_\d]+)(?:\s*=\s*)([\w.\d]+\.)([A-Za-z_\d]+)(?:;?)/gi;
 const buildModuleRegex = () => /(?:\s*module\s+)([\w.\d]+)(?:\s+{)/gi;
+const buildUsageRegex = () => /(api\.(?:[a-z_\d]+\.)*)(([A-Z_][\w\d]+)(?:\.)?([\w\d_]+)?)/g;
 
 function findExports(code) {
   const regex = buildExportsRegex();
@@ -49,6 +51,27 @@ function findModule(code): string | null {
   return match ? match[1] : null;
 }
 
+function findUsages(code) {
+  const regex = buildUsageRegex();
+  const result: ImportData[] = [];
+  const fullUsages: string[] = [];
+  let match = regex.exec(code);
+  while (match) {
+    const name = match[3];
+    const importedName = match[3];
+    const module = match[1] ? match[1].slice(0, -1) : '';
+
+    const full = `${match[1]}${match[3]}`;
+    if (!fullUsages.includes(full)) {
+      result.push({ module, importedName, name });
+      fullUsages.push(full);
+    }
+    match = regex.exec(code);
+  }
+
+  return result;
+}
+
 export function resolveExports(files) {
   const map = new Map();
 
@@ -75,15 +98,16 @@ export function resolveImports(entries) {
   return map;
 };
 
-export default function resolve(files) {
-  const map = new Map();
+export default function resolve(files): Map<string, FileData> {
+  const map: Map<string, FileData> = new Map();
 
   files.forEach(file => {
     const code = fs.readFileSync(file, 'utf8');
     const module = findModule(code);
     const exports = findExports(code);
     const imports = findImports(code);
-    map.set(file, { module, exports, imports });
+    const usages = findUsages(code);
+    map.set(file, { module, exports, imports, usages });
   });
 
   return map;

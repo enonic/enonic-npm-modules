@@ -6,43 +6,54 @@ import {ImportData, FileData} from './resolve';
 const IMPORTS_REGEX = /((?:\s*import\s+)([A-Za-z_\d]+)(?:\s*=\s*)([\w.\d]+\.)([A-Za-z_\d]+)(?:;?))+/gi;
 const MODULE_REGEX = /(?:\s*module\s+)([\w.\d]+)(?:\s+{)/gi;
 const MODULE_END_REGEX = /}(?:[^}]+)$/gi;
-const USAGE_REGEX = /(?:(?:(?:api)|[A-Za-z_]*)\.)+([\w\d]+)/gi;
+const USAGE_REGEX = /(?:api\.(?:[a-z_\d]+\.)*)(([A-Z_][\w\d]+)(?:\.)?([\w\d_]+)?)/g;
 
 export default function modify(filesData: Map<string, FileData>) {
   filesData.forEach((data, file) => {
     let code = fs.readFileSync(file, 'utf8');
     let hasChanges = false;
+    let importInsertPosition = 0;
 
     if (data.module) {
       hasChanges = true;
+      importInsertPosition = code.indexOf('module api');
       code = code.replace(MODULE_REGEX, '');
       code = code.replace(MODULE_END_REGEX, '');
     }
 
+    // Imports
+    const importsData = [...data.imports, ...data.usages.filter(usage => filterImports(data.imports, usage))];
+    const imports = importsData
+      .map((importData: ImportData) => {
+        const importPath = buildImportPath(filesData, importData, file)
+        return `import {${buildImportName(importData)}} from '${importPath}';`;
+      })
+      .join('\n    ');
+
     if (data.imports.length > 0) {
       hasChanges = true;
-      const imports = data.imports
-        .map((importData: ImportData) => {
-          const importPath = buildImportPath(filesData, importData, file)
-          return `import {${buildImportName(importData)}} from '${importPath}';`;
-        })
-        .join('\n    ');
       code = code.replace(IMPORTS_REGEX, imports);
+    } else if (data.usages.length > 0) {
+      code = code.slice(0, importInsertPosition) + imports + code.slice(importInsertPosition);
     }
 
-    // console.log(`${data.module}\t: ${file}`);
+    // Replace usages
+    if (data.usages.length > 0) {
+      code = code.replace(USAGE_REGEX, '$2');
+    }
+
     if (hasChanges) {
       fs.writeFileSync(file, code);
     }
   });
 };
 
-function buildImportName(data: ImportData) {
+function buildImportName(data: ImportData): string {
   const nameChanged = data.name !== data.importedName;
   return nameChanged ? `${data.name} as ${data.importedName}` : data.name;
 }
 
-function buildImportPath(filesData: Map<string, FileData>, importData: ImportData, file: string) {
+function buildImportPath(filesData: Map<string, FileData>, importData: ImportData, file: string): string {
   const filesIt = filesData.entries();
   let fileData: [string, FileData] = filesIt.next().value;
 
@@ -52,11 +63,19 @@ function buildImportPath(filesData: Map<string, FileData>, importData: ImportDat
       importData.module === f.module &&
       f.exports.includes(importData.name)
     ) {
-      const importPath = path.relative(file, fileData[0]);
-      return path.join(path.dirname(importPath), path.basename(importPath, '.ts'));
+      const importPath = path.relative(path.dirname(file), fileData[0]);
+      return path.join(path.dirname(importPath), path.basename(importPath, '.ts')).replace(/\\/g, '/');
     }
     fileData = filesIt.next().value;
   }
 
   return '';
+}
+
+function compareImports(importA: ImportData, importB: ImportData): boolean {
+  return importA.module === importB.module && importA.name === importB.name;
+}
+
+function filterImports(filteringData: ImportData[], importData: ImportData): boolean {
+  return !filteringData.find(imp => compareImports(imp, importData));
 }

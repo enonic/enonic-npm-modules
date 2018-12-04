@@ -1,7 +1,7 @@
 const path = require('path');
 
 import find from './src/find';
-import resolve from './src/resolve';
+import resolve, {FileData} from './src/resolve';
 import modify from './src/modify';
 
 const FILES_ALL = './**/*.ts';
@@ -14,8 +14,5 @@ export async function migrate() {
   const files: string[] = await find(filesPath);
   console.log(`Found ${files.length} files.`);
   const filesData = resolve(files);
-  // filesData.forEach((data, file) => {
-  //   console.log(`${file}\n  ${JSON.stringify(data)}`);
-  // });
   modify(filesData);
 };
