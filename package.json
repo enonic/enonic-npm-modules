@@ -32,6 +32,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^23.3.10",
+    "@types/node": "^10.12.12",
     "coveralls": "^3.0.0",
     "eslint": "^5.4.0",
     "eslint-config-airbnb-base": "^13.1.0",
