@@ -1,5 +1,6 @@
-const path = require('path');
-const fs = require('fs');
+import * as path from 'path';
+import * as fs from 'fs';
+import {Dependencies} from './generate';
 
 function createMarker(external, recursive) {
   if (external) {
@@ -11,7 +12,7 @@ function createMarker(external, recursive) {
   return '   - ';
 }
 
-function createLogger(fileName) {
+function createLogger(fileName: string): (text: string) => void {
   const file = fileName ? path.resolve(fileName) : null;
   if (file) {
     return text => fs.writeFileSync(file, text, 'utf8');
@@ -28,7 +29,7 @@ function getDependency(map, entry, reversed) {
 const isInternal = (map, entry) => map.has(entry);
 const isExternal = (map, entry) => !isInternal(map, entry);
 
-function isBranchInternal(map, entry, chain = [], reversed) {
+function isBranchInternal(map: Map<string, Dependencies>, entry: string, chain: string[] = [], reversed: boolean = false) {
   const recursive = chain.includes(entry);
   const dep = getDependency(map, entry, reversed);
   return (
@@ -39,13 +40,13 @@ function isBranchInternal(map, entry, chain = [], reversed) {
 }
 
 function printGroup(
-  map,
-  entry,
-  logger,
-  maxLevel,
-  reversed,
-  level = 0,
-  chain = []
+  map: Map<string, Dependencies>,
+  entry: string,
+  logger: (text: string) => void,
+  maxLevel: number,
+  reversed: boolean,
+  level: number = 0,
+  chain: string[] = []
 ) {
   try {
     if (level > maxLevel) {
@@ -75,9 +76,9 @@ function printGroup(
   }
 }
 
-module.exports = function print(map, fileName, maxLevel, internal, reversed) {
+export default function print(map: Map<string, Dependencies>, fileName: string, maxLevel: number, internal: boolean, reversed: boolean) {
   const logger = createLogger(fileName);
-  map.forEach(({ depOn = [], depFor = [] }, entry) => {
+  map.forEach(({ depOn = [], depFor = [] }: Dependencies, entry: string) => {
     const dep = reversed ? depFor : depOn;
     if (dep.length < 1) {
       if (internal && !isBranchInternal(map, entry)) {

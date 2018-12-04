@@ -1,5 +1,5 @@
-const path = require('path');
-const resolve = require('../src/resolve');
+import * as path from 'path';
+import resolve from '../src/resolve';
 
 describe('resolve()', () => {
   test(`Should be find only exported members`, () => {
@@ -15,6 +15,7 @@ describe('resolve()', () => {
     ];
     expect(result.size).toEqual(1);
     expect(result.has(file)).toBeTruthy();
-    expect(result.get(file)).toEqual(expected);
+    expect(result.get(file)!.exports).toBeTruthy();
+    expect(result.get(file)!.exports).toEqual(expected);
   });
 });
