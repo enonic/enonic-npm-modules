@@ -63,8 +63,9 @@ function buildImportPath(filesData: Map<string, FileData>, importData: ImportDat
       importData.module === f.module &&
       f.exports.includes(importData.name)
     ) {
-      const importPath = path.relative(path.dirname(file), fileData[0]);
-      return path.join(path.dirname(importPath), path.basename(importPath, '.ts')).replace(/\\/g, '/');
+      let importPath = path.relative(path.dirname(file), fileData[0]);
+      importPath = path.join(path.dirname(importPath), path.basename(importPath, '.ts'));
+      return `${importPath.startsWith('.') ? importPath : './' + importPath}`.replace(/\\/g, '/');
     }
     fileData = filesIt.next().value;
   }
