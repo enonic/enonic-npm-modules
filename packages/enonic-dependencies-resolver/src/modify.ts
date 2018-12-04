@@ -23,28 +23,11 @@ export default function modify(filesData: Map<string, FileData>) {
       hasChanges = true;
       const imports = data.imports
         .map((importData: ImportData) => {
-          let importPath = '';
-
-          const filesIt = filesData.entries();
-          let fileData: [string, FileData] = filesIt.next().value;
-          while (fileData) {
-            const f = fileData[1];
-            if (
-              importData.module === f.module &&
-              f.exports.includes(importData.name)
-            ) {
-              importPath = path.relative(file, fileData[0]);
-              importPath = path.join(path.dirname(importPath), path.basename(importPath, '.ts'));
-              break;
-            }
-            fileData = filesIt.next().value;
-          }
-
+          const importPath = buildImportPath(filesData, importData, file)
           return `import {${buildImportName(importData)}} from '${importPath}';`;
         })
         .join('\n    ');
       code = code.replace(IMPORTS_REGEX, imports);
-
     }
 
     // console.log(`${data.module}\t: ${file}`);
@@ -57,4 +40,23 @@ export default function modify(filesData: Map<string, FileData>) {
 function buildImportName(data: ImportData) {
   const nameChanged = data.name !== data.importedName;
   return nameChanged ? `${data.name} as ${data.importedName}` : data.name;
+}
+
+function buildImportPath(filesData: Map<string, FileData>, importData: ImportData, file: string) {
+  const filesIt = filesData.entries();
+  let fileData: [string, FileData] = filesIt.next().value;
+
+  while (fileData) {
+    const f = fileData[1];
+    if (
+      importData.module === f.module &&
+      f.exports.includes(importData.name)
+    ) {
+      const importPath = path.relative(file, fileData[0]);
+      return path.join(path.dirname(importPath), path.basename(importPath, '.ts'));
+    }
+    fileData = filesIt.next().value;
+  }
+
+  return '';
 }
