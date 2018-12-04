@@ -24,6 +24,7 @@
     "report": "node_modules/.bin/jest --coverage && cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
     "precommit": "npm run build && lint-staged",
     "prepush": "npm run build && npm test",
+    "prepublish": "npm run build",
     "lint": "eslint --fix .",
     "publish:all": "lerna publish",
     "postinstall": "lerna bootstrap"
