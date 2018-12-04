@@ -39,7 +39,7 @@ export default function modify(filesData: Map<string, FileData>) {
 
     // Replace usages
     if (data.usages.length > 0) {
-      code = code.replace(USAGE_REGEX, '$2');
+      code = code.replace(USAGE_REGEX, '$1');
     }
 
     if (hasChanges) {
