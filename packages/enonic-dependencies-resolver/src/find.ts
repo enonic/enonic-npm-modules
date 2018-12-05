@@ -7,5 +7,4 @@ const isValid = file => !EXCLUDES.some(exclude => exclude.test(file));
 export default async function find(globPath): Promise<string[]> {
   const files = await pify(glob)(globPath);
   return files.filter(isValid);
-
 };

@@ -5,8 +5,10 @@ import resolve, {resolveExports} from './src/resolve';
 import generate from './src/generate';
 import print from './src/print';
 import modify from './src/modify';
+import clean from './src/clean';
 
 const FILES_ALL = './**/*.ts';
+const FILES_MODULE = './**/_module*.ts';
 
 export interface ListFlags {
   prefix: string;
@@ -49,4 +51,5 @@ export async function migrate() {
   console.log(`Found ${files.length} files.`);
   const filesData = resolve(files);
   modify(filesData);
+  clean(FILES_MODULE);
 };
