@@ -22,7 +22,11 @@ export default function modify(filesData: Map<string, FileData>) {
     }
 
     // Imports
-    const importsData = [...data.imports, ...data.usages.filter(usage => filterImports(data.imports, usage))];
+    const exports = data.exports.map(exp => `${data.module}.${exp}`);
+    const importsData = [
+      ...data.imports.filter(imp => filterImportsStrings(exports, imp)),
+      ...data.usages.filter(usage => filterImports(data.imports, usage) && filterImportsStrings(exports, usage))
+    ];
     const imports = importsData
       .map((importData: ImportData) => {
         const importPath = buildImportPath(filesData, importData, file)
@@ -79,4 +83,12 @@ function compareImports(importA: ImportData, importB: ImportData): boolean {
 
 function filterImports(filteringData: ImportData[], importData: ImportData): boolean {
   return !filteringData.find(imp => compareImports(imp, importData));
+}
+
+function compareImportsStrings(importA: string, importB: ImportData): boolean {
+  return importA === `${importB.module}.${importB.name}`;
+}
+
+function filterImportsStrings(filteringImports: string[], impostData: ImportData): boolean {
+  return !filteringImports.find(imp => compareImportsStrings(imp, impostData));
 }
