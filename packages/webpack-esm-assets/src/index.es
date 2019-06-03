@@ -1,18 +1,18 @@
+/* eslint-disable import/prefer-default-export */
+
 import glob from 'glob';
 import path from 'path';
 import EsmWebpackPlugin from '@purtuga/esm-webpack-plugin';
 
-
 const dict = arr => Object.assign(...arr.map(([k, v]) => ({ [k]: v })));
-
+const toStr = v => JSON.stringify(v, null, 4);
 
 const SRC_ASSETS_DIR = 'src/main/resources/assets';
 const DST_ASSETS_DIR = 'build/resources/main/assets';
 
-
 export function webpackEsmAssets({
   __dirname,
-  extensions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', '.json'],
+  extensions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
   extensionsGlob = `{${extensions.join(',')}}`,
   assetsGlob = `${SRC_ASSETS_DIR}/**/*.${extensionsGlob}`,
   assetFiles = glob.sync(assetsGlob),
@@ -20,14 +20,17 @@ export function webpackEsmAssets({
   entry = dict(assetFiles.map(k => [
   	k.replace(`${SRC_ASSETS_DIR}/`, '').replace(/\.[^.]*$/, ''), // name
   	`.${k.replace(SRC_ASSETS_DIR, '')}` // source relative to context
-  ]));,
+  ])),
   mode = 'production',
+  outputFilename = '[name].esm.js',
+  outputPath = path.join(__dirname, DST_ASSETS_DIR),
   output = {
-    filename: outputFilename = '[name].esm.js',
-    path: outputPath = path.join(__dirname, DST_ASSETS_DIR),
+    filename: outputFilename,
+    path: outputPath,
   },
+  performanceHints = false,
   performance = {
-		hints: performanceHints = false
+		hints: performanceHints
 	},
   stats = {
   	colors: true,
@@ -39,6 +42,7 @@ export function webpackEsmAssets({
   	version: false
   }
 }) {
+  console.log(toStr({}));
   return {
     context,
     entry,
