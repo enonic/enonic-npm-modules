@@ -16,7 +16,7 @@ export function webpackEsmAssets(params) {
     throw new Error('webpackStyleAssets: __dirname is a required parameter');
   }
   const {
-    extensions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
+    extensions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js'],
     extensionsGlob = `{${extensions.join(',')}}`,
     assetsGlob = `${SRC_ASSETS_DIR}/**/*.${extensionsGlob}`,
     assetFiles = glob.sync(assetsGlob),
@@ -38,6 +38,7 @@ export function webpackEsmAssets(params) {
     /* performance = {
       hints: performanceHints
     },*/
+    resolveExtensions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
     stats = {
       colors: true,
       hash: false,
@@ -110,7 +111,7 @@ export function webpackEsmAssets(params) {
     },
     plugins: [new EsmWebpackPlugin()],
     resolve: {
-      extensions: extensions.map(ext => `.${ext}`)
+      extensions: resolveExtensions.map(ext => `.${ext}`)
     },
     stats
   };
