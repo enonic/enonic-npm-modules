@@ -4,57 +4,80 @@ import path from 'path';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'; // Supports ECMAScript2015
 
 const dict = arr => Object.assign(...arr.map(([k, v]) => ({ [k]: v })));
-const toStr = v => JSON.stringify(v, null, 4);
+// const toStr = v => JSON.stringify(v, null, 4);
 
 const SRC_DIR = 'src/main/resources';
 const SRC_ASSETS_DIR = `${SRC_DIR}/assets`;
 const DST_DIR = 'build/resources/main';
 
-export function webpackServerSideJs({
-  __dirname,
-  extensions = ['es', 'es6', 'js'],
-  extensionsGlob = `{${extensions.join(',')}}`,
-  assetsGlob = `${SRC_ASSETS_DIR}/**/*.${extensionsGlob}`,
-  files = glob.sync(`${SRC_DIR}/**/*.${extensionsGlob}`, {
-    ignore: assetsGlob
-  }),
-  context = path.resolve(__dirname, SRC_DIR),
-  entry = dict(
-    files.map(k => [
-      k.replace(`${SRC_DIR}/`, '').replace(/\.[^.]*$/, ''), // name
-      `.${k.replace(SRC_DIR, '')}` // source relative to context
-    ])
-  ),
-  externals = [/^\//],
-  devtool = false,
-  mode = 'production',
-  outputFilename = '[name].js',
-  outputPath = path.join(__dirname, DST_DIR),
-  /* output = {
-    filename: outputFilename,
-    path: outputPath,
-  },*/
-  performanceHints = false,
-  /* performance = {
-    hints: performanceHints
-  },*/
-  resolveExtentions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
-  stats = {
-    colors: true,
-    hash: false,
-    maxModules: 0,
-    modules: false,
-    moduleTrace: false,
-    timings: false,
-    version: false
+export function webpackServerSideJs(params) {
+  const { __dirname } = params;
+  if (!__dirname) {
+    throw new Error('webpackStyleAssets: __dirname is a required parameter');
   }
-}) {
-  // console.log(toStr({ files }));
-  if (!files.length) {
+  const {
+    context = path.resolve(__dirname, SRC_DIR),
+
+    extensions = ['es', 'es6', 'js'],
+    extensionsGlob = `{${extensions.join(',')}}`,
+    assetsGlob = `${SRC_ASSETS_DIR}/**/*.${extensionsGlob}`,
+    serverSideFiles = glob.sync(`${SRC_DIR}/**/*.${extensionsGlob}`, {
+      ignore: assetsGlob
+    }),
+    entry = dict(
+      serverSideFiles.map(k => [
+        k.replace(`${SRC_DIR}/`, '').replace(/\.[^.]*$/, ''), // name
+        `.${k.replace(SRC_DIR, '')}` // source relative to context
+      ])
+    ),
+
+    externals = [/^\//],
+
+    devtool = false,
+
+    mode = 'production',
+
+    outputFilename = '[name].js',
+    outputPath = path.join(__dirname, DST_DIR),
+    /* output = {
+      filename: outputFilename,
+      path: outputPath,
+    },*/
+
+    performanceHints = false,
+    /* performance = {
+      hints: performanceHints
+    },*/
+
+    resolveExtentions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
+
+    stats = {
+      colors: true,
+      hash: false,
+      maxModules: 0,
+      modules: false,
+      moduleTrace: false,
+      timings: false,
+      version: false
+    }
+  } = params;
+  /* console.log(toStr({
+    __dirname,
+    context,
+    extensions,
+    extensionsGlob,
+    assetsGlob,
+    serverSideFiles,
+    entry,
+    externals,
+    devtool,
+    mode
+  }));*/
+  if (!serverSideFiles.length) {
     console.error('Webpack did not find any files to process!');
     process.exit();
   }
-  return {
+  const serverSideWebpackConfig = {
     context,
     entry,
     externals,
@@ -116,4 +139,6 @@ export function webpackServerSideJs({
     },
     stats
   };
+  // console.log(toStr({ serverSideWebpackConfig }));
+  return serverSideWebpackConfig;
 } // function webpackEsmAssets
