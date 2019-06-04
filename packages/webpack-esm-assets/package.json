@@ -15,6 +15,7 @@
     "babel-plugin-array-includes": "^2.0.3",
     "glob": "^7.1.4"
   },
+  "description": "Function to webpack client-side ecmascript modules",
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/runtime": "^7.4.5",
@@ -32,10 +33,14 @@
   "files": [
     "dist"
   ],
+  "keywords": [
+    "enonic",
+    "webpack",
+    "ecmascript module"
+  ],
   "license": "ISC",
   "main": "dist/index.js",
   "name": "@enonic/webpack-esm-assets",
-  "private": true,
   "repository": "https://github.com/enonic/enonic-npm-modules/packages/webpack-esm-assets",
   "scripts": {
     "webpack": "webpack"
