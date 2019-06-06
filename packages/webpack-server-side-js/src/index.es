@@ -100,8 +100,8 @@ export function webpackServerSideJs(params) {
                   '@babel/plugin-proposal-object-rest-spread',
                   '@babel/plugin-syntax-throw-expressions',
                   '@babel/plugin-transform-object-assign',
-                  'array-includes' // ,
-                  // 'transform-es2017-object-entries'
+                  'array-includes',
+                  'transform-es2017-object-entries'
                 ],
                 presets: [
                   [
