@@ -49,7 +49,12 @@ export function webpackServerSideJs(params) {
       hints: performanceHints
     },*/
 
+    resolveAlias,
     resolveExtentions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
+    resolve = {
+      alias: resolveAlias,
+      extensions: resolveExtentions.map(ext => `.${ext}`)
+    },
 
     stats = {
       colors: true,
@@ -71,12 +76,15 @@ export function webpackServerSideJs(params) {
     entry,
     externals,
     devtool,
-    mode
+    mode,
+    resolve
   }));*/
+
   if (!serverSideFiles.length) {
     console.error('Webpack did not find any files to process!');
     process.exit();
   }
+
   const serverSideWebpackConfig = {
     context,
     entry,
@@ -134,9 +142,7 @@ export function webpackServerSideJs(params) {
       hints: performanceHints
     },
     plugins: [],
-    resolve: {
-      extensions: resolveExtentions.map(ext => `.${ext}`)
-    },
+    resolve,
     stats
   };
   // console.log(toStr({ serverSideWebpackConfig }));
