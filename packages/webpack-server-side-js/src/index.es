@@ -49,6 +49,8 @@ export function webpackServerSideJs(params) {
       hints: performanceHints
     },*/
 
+    plugins = [],
+
     resolveAlias,
     resolveExtentions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
     resolve = {
@@ -77,6 +79,7 @@ export function webpackServerSideJs(params) {
     externals,
     devtool,
     mode,
+    plugins,
     resolve
   }));*/
 
@@ -115,6 +118,9 @@ export function webpackServerSideJs(params) {
                   [
                     '@babel/preset-env',
                     {
+                      // Enables all transformation plugins and as a result,
+                      // your code is fully compiled to ES5
+                      forceAllTransforms: true,
                       useBuiltIns: false // false means polyfill not required runtime
                     }
                   ]
@@ -141,7 +147,7 @@ export function webpackServerSideJs(params) {
     performance: {
       hints: performanceHints
     },
-    plugins: [],
+    plugins,
     resolve,
     stats
   };
