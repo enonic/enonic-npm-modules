@@ -42,7 +42,8 @@
   "name": "@enonic/webpack-server-side-js",
   "repository": "https://github.com/enonic/enonic-npm-modules/packages/webpack-server-side-js",
   "scripts": {
+    "prepack": "npm run webpack",
     "webpack": "webpack"
   },
-  "version": "0.0.3"
+  "version": "0.0.4"
 }
