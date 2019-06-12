@@ -4,6 +4,7 @@
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/plugin-syntax-throw-expressions": "^7.2.0",
     "@babel/plugin-transform-object-assign": "^7.2.0",
@@ -45,5 +46,5 @@
     "prepack": "npm run webpack",
     "webpack": "webpack"
   },
-  "version": "0.0.5"
+  "version": "0.0.6"
 }
