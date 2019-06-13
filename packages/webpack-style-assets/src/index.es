@@ -7,7 +7,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import postcssPresetEnv from 'postcss-preset-env';
 
 const dict = arr => Object.assign(...arr.map(([k, v]) => ({ [k]: v })));
-const toStr = v => JSON.stringify(v, null, 4);
+// const toStr = v => JSON.stringify(v, null, 4);
 
 export function webpackStyleAssets(params) {
   const { __dirname } = params;
@@ -20,6 +20,8 @@ export function webpackStyleAssets(params) {
 
     context = path.resolve(__dirname, srcStyleDir),
 
+    devtool = false,
+
     extensions = ['sass', 'scss', 'less', 'styl', 'css'],
     extensionsGlob = `{${extensions.join(',')}}`,
     filename = 'main',
@@ -31,6 +33,8 @@ export function webpackStyleAssets(params) {
         `.${k.replace(srcStyleDir, '')}` // source relative to context
       ])
     ),
+
+    externals,
 
     mode = 'production',
 
@@ -108,16 +112,16 @@ export function webpackStyleAssets(params) {
       version: false
     }
   } = params;
-  console.log(
+  /* console.log(
     toStr({
-      /* __dirname,
+      __dirname,
       srcStyleDir,
       dstStyleDir,
       context,
       extensions,
       extensionsGlob,
-      styleGlob,*/
-      styleFiles /* ,
+      styleGlob,
+      styleFiles,
       entry,
       mode,
       styleUse,
@@ -125,16 +129,18 @@ export function webpackStyleAssets(params) {
       output,
       plugins,
       resolve,
-      stats*/
+      stats
     })
-  );
+  );*/
   if (!styleFiles.length) {
     console.error('Webpack did not find any style files to process!');
     process.exit(); // Webpack makes process an export?
   }
   const styleWebpackConfig = {
     context,
+    devtool,
     entry,
+    externals,
     mode,
     module,
     output,
