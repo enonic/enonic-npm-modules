@@ -46,5 +46,5 @@
     "prepack": "npm run webpack",
     "webpack": "webpack"
   },
-  "version": "0.0.6"
+  "version": "0.0.7"
 }

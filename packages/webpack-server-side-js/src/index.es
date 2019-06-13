@@ -52,10 +52,10 @@ export function webpackServerSideJs(params) {
     plugins = [],
 
     resolveAlias,
-    resolveExtentions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
+    resolveExtensions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
     resolve = {
       alias: resolveAlias,
-      extensions: resolveExtentions.map(ext => `.${ext}`)
+      extensions: resolveExtensions.map(ext => `.${ext}`)
     },
 
     stats = {
