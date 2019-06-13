@@ -21,24 +21,38 @@ export function webpackEsmAssets(params) {
     assetsGlob = `${SRC_ASSETS_DIR}/**/*.${extensionsGlob}`,
     assetFiles = glob.sync(assetsGlob),
     context = path.resolve(__dirname, SRC_ASSETS_DIR),
+    devtool = false,
     entry = dict(
       assetFiles.map(k => [
         k.replace(`${SRC_ASSETS_DIR}/`, '').replace(/\.[^.]*$/, ''), // name
         `.${k.replace(SRC_ASSETS_DIR, '')}` // source relative to context
       ])
     ),
+    externals,
     mode = 'production',
+
+    optimization,
+
     outputFilename = '[name].esm.js',
     outputPath = path.join(__dirname, DST_ASSETS_DIR),
-    /* output = {
+    output = {
       filename: outputFilename,
-      path: outputPath,
-    },*/
+      library: 'LIB',
+      libraryTarget: 'var',
+      path: outputPath
+    },
     performanceHints = false,
-    /* performance = {
+    performance = {
       hints: performanceHints
-    },*/
+    },
+
+    resolveAlias,
     resolveExtensions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
+    resolve = {
+      alias: resolveAlias,
+      extensions: resolveExtensions.map(ext => `.${ext}`)
+    },
+
     stats = {
       colors: true,
       hash: false,
@@ -52,7 +66,9 @@ export function webpackEsmAssets(params) {
   // console.log(toStr({ assetFiles }));
   return {
     context,
+    devtool,
     entry,
+    externals,
     mode,
     module: {
       rules: [
@@ -92,27 +108,11 @@ export function webpackEsmAssets(params) {
         }
       ]
     }, // module
-    /* optimization: {
-      minimizer: [
-        new UglifyJsPlugin({
-          parallel: true,
-          sourceMap: false
-        })
-      ]
-    },*/
-    output: {
-      path: outputPath,
-      filename: outputFilename,
-      library: 'LIB',
-      libraryTarget: 'var'
-    },
-    performance: {
-      hints: performanceHints
-    },
+    optimization,
+    output,
+    performance,
     plugins: [new EsmWebpackPlugin()],
-    resolve: {
-      extensions: resolveExtensions.map(ext => `.${ext}`)
-    },
+    resolve,
     stats
   };
 } // function webpackEsmAssets
