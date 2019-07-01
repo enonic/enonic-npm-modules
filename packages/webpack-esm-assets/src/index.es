@@ -46,6 +46,8 @@ export function webpackEsmAssets(params) {
       hints: performanceHints
     },
 
+    plugins = [],
+
     resolveAlias,
     resolveExtensions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
     resolve = {
@@ -111,7 +113,7 @@ export function webpackEsmAssets(params) {
     optimization,
     output,
     performance,
-    plugins: [new EsmWebpackPlugin()],
+    plugins: plugins.concat(new EsmWebpackPlugin()),
     resolve,
     stats
   };
