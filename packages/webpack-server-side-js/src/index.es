@@ -52,7 +52,17 @@ export function webpackServerSideJs(params) {
     plugins = [],
 
     resolveAlias,
-    resolveExtensions = ['mjs', 'jsx', 'esm', 'es', 'es6', 'js', 'json'],
+    resolveExtensions = [
+      'mjs',
+      'jsx',
+      'esm',
+      'es',
+      'es6',
+      'ts',
+      'tsx',
+      'js',
+      'json'
+    ],
     resolve = {
       alias: resolveAlias,
       extensions: resolveExtensions.map(ext => `.${ext}`)
@@ -97,7 +107,7 @@ export function webpackServerSideJs(params) {
     module: {
       rules: [
         {
-          test: /\.(es6?|js)$/, // Will need js for node module depenencies
+          test: /\.(es6?|tsx?|js)$/, // Will need js for node module depenencies
           use: [
             {
               loader: 'babel-loader',
@@ -116,6 +126,7 @@ export function webpackServerSideJs(params) {
                   'transform-es2017-object-entries'
                 ],
                 presets: [
+                  '@babel/preset-typescript',
                   [
                     '@babel/preset-env',
                     {
