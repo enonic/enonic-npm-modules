@@ -121,6 +121,7 @@ export function webpackServerSideJs(params) {
                   '@babel/plugin-proposal-export-default-from',
                   '@babel/plugin-proposal-object-rest-spread',
                   '@babel/plugin-syntax-throw-expressions',
+                  '@babel/plugin-transform-classes',
                   '@babel/plugin-transform-modules-commonjs',
                   '@babel/plugin-transform-object-assign',
                   'array-includes',

@@ -45,5 +45,10 @@ Into:
 
 ## Changelog
 
+### 0.1.2
+
+* Add @babel/plugin-transform-classes
+
 ### 0.1.1
+
 * Add @babel/plugin-transform-modules-commonjs

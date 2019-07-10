@@ -7,6 +7,7 @@
     "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
     "@babel/plugin-syntax-throw-expressions": "^7.2.0",
+    "@babel/plugin-transform-classes": "^7.4.4",
     "@babel/plugin-transform-modules-commonjs": "^7.5.0",
     "@babel/plugin-transform-object-assign": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.5.0",
@@ -48,5 +49,5 @@
     "prepack": "npm run webpack",
     "webpack": "webpack"
   },
-  "version": "0.1.1"
+  "version": "0.1.2"
 }
