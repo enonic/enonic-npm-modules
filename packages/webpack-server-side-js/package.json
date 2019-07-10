@@ -2,24 +2,25 @@
   "author": "Christian Westgaard <cwe@enonic.com>",
   "contributors": [],
   "dependencies": {
-    "@babel/core": "^7.5.0",
+    "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.5.0",
-    "@babel/plugin-proposal-export-default-from": "^7.2.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.5.1",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.4",
     "@babel/plugin-syntax-throw-expressions": "^7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.5.0",
     "@babel/plugin-transform-object-assign": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-env": "^7.5.4",
     "@babel/preset-typescript": "^7.3.3",
     "@babel/register": "^7.4.4",
-    "@babel/runtime": "^7.5.1",
+    "@babel/runtime": "^7.5.4",
     "babel-loader": "^8.0.6",
     "babel-plugin-array-includes": "^2.0.3",
     "babel-plugin-transform-es2017-object-entries": "0.0.5",
     "glob": "^7.1.4",
     "path": "^0.12.7",
     "uglifyjs-webpack-plugin": "^2.1.3",
-    "webpack": "^4.35.2",
+    "webpack": "^4.35.3",
     "webpack-cli": "^3.3.5"
   },
   "description": "Function to webpack Enonic XP server-side javascript",
@@ -47,5 +48,5 @@
     "prepack": "npm run webpack",
     "webpack": "webpack"
   },
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

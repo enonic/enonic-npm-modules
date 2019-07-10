@@ -42,3 +42,8 @@ Into:
 ```
 ./build/resources/main/**/*.js
 ```
+
+## Changelog
+
+### 0.1.1
+* Add @babel/plugin-transform-modules-commonjs
