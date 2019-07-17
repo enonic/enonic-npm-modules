@@ -22,7 +22,11 @@ export const Input = ({
 		value: newValue
 	}) => {
 		setFieldValue(path, newValue);
-		validate ? validate(newValue) : validateField(path);
+		if (validate) {
+			validate(newValue);
+		} else {
+			validateField(path);
+		}
 	},
 	value = getIn(values, path, ''),
 	...rest
