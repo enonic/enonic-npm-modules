@@ -37,6 +37,6 @@ export const Input = ({
 			value={value}
 			{...rest}
 		/>
-		{error && <Message error icon><Icon name='warning'/><Message.Content>{error}<Message.Content></Message>}
+		{error && <Message error icon><Icon name='warning'/><Message.Content>{error}</Message.Content></Message>}
 	</>;
 };
