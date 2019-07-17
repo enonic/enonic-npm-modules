@@ -4,7 +4,7 @@ import {
 	Input as SemanticUiReactInput,
 	Message
 } from 'semantic-ui-react';
-import {isFunction} from './utils/isFunction';
+//import {isFunction} from './utils/isFunction';
 
 
 export const Input = ({
@@ -23,7 +23,8 @@ export const Input = ({
 		value: newValue
 	}) => {
 		setFieldValue(path, newValue);
-		isFunction(validate) && validate(newValue);
+		//isFunction(validate)
+		validate && validate(newValue);
 	},
 	value = getIn(values, path, ''),
 	...rest
