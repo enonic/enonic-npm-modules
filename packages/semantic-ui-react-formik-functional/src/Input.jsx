@@ -4,6 +4,7 @@ import {
 	Input as SemanticUiReactInput,
 	Message
 } from 'semantic-ui-react';
+import {isFunction} from './utils/isFunction';
 
 
 export const Input = ({
@@ -14,7 +15,7 @@ export const Input = ({
 	formik: {
 		errors = {},
 		setFieldValue,
-		validateField,
+		//validateField, // This only works when using Field or FastField
 		values
 	},
 	validate,
@@ -22,11 +23,7 @@ export const Input = ({
 		value: newValue
 	}) => {
 		setFieldValue(path, newValue);
-		if (validate) {
-			validate(newValue);
-		} else {
-			validateField(path);
-		}
+		isFunction(validate) && validate(newValue);
 	},
 	value = getIn(values, path, ''),
 	...rest
