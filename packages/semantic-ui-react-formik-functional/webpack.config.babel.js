@@ -2,7 +2,7 @@ import path from 'path';
 import EsmWebpackPlugin from '@purtuga/esm-webpack-plugin';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin'; // Supports ECMAScript2015
 
-//──────────────────────────────────────────────────────────────────────────────
+// ──────────────────────────────────────────────────────────────────────────────
 
 const CONTEXT = path.resolve(__dirname, 'src');
 const ENTRY = {
@@ -29,7 +29,7 @@ const RESOLVE = {
   ]
 };
 
-//──────────────────────────────────────────────────────────────────────────────
+// ──────────────────────────────────────────────────────────────────────────────
 
 const UMD_CONFIG = {
   context: CONTEXT,
@@ -37,96 +37,108 @@ const UMD_CONFIG = {
   devtool: DEVTOOL,
   mode: MODE,
   module: {
-    rules: [{
-      test: TEST,
-      exclude: /node_modules/,
-      use: [{
-				loader: 'babel-loader',
-				options: {
-					babelrc: false, // The .babelrc file should only be used to transpile config files.
-					comments: false,
-					compact: false,
-					minified: false,
-					plugins: [
-						'array-includes',
-						'@babel/plugin-proposal-object-rest-spread',
-						'@babel/plugin-transform-object-assign'
-					],
-					presets: BABEL_PRESETS
-				} // options
-			}]
-    }]
+    rules: [
+      {
+        test: TEST,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false, // The .babelrc file should only be used to transpile config files.
+              comments: false,
+              compact: false,
+              minified: false,
+              plugins: [
+                'array-includes',
+                '@babel/plugin-proposal-object-rest-spread',
+                '@babel/plugin-transform-object-assign'
+              ],
+              presets: BABEL_PRESETS
+            } // options
+          }
+        ]
+      }
+    ]
   },
   optimization: {
-		minimizer: [
-			new UglifyJsPlugin({
-				parallel: true, // highly recommended
-				sourceMap: false/*,
+    minimizer: [
+      new UglifyJsPlugin({
+        parallel: true, // highly recommended
+        sourceMap: false /* ,
 				uglifyOptions: {
 					mangle: false, // default is true?
 					keep_fnames: true // default is false?
 				}*/
-			})
-		]
-	},
+      })
+    ]
+  },
   output: {
-		path: OUTPUT_PATH,
+    path: OUTPUT_PATH,
     filename: '[name].umd.js',
-		//library: 'LIB',
-		libraryTarget: 'umd'
+    // library: 'LIB',
+    libraryTarget: 'umd'
   },
   resolve: RESOLVE
-}
+};
 
-//──────────────────────────────────────────────────────────────────────────────
+// ──────────────────────────────────────────────────────────────────────────────
 
 const CJS_CONFIG = {
   context: CONTEXT,
-  entry: ENTRY,
   devtool: DEVTOOL,
+  entry: ENTRY,
+  /* externals: [
+    'formik',
+    'semantic-ui-react'
+  ],*/
   mode: MODE,
   module: {
-    rules: [{
-      test: TEST,
-      exclude: /node_modules/,
-      use: [{
-				loader: 'babel-loader',
-				options: {
-					babelrc: false, // The .babelrc file should only be used to transpile config files.
-					comments: false,
-					compact: false,
-					minified: false,
-					plugins: [
-						'array-includes',
-						'@babel/plugin-proposal-object-rest-spread',
-						'@babel/plugin-transform-object-assign'
-					],
-					presets: BABEL_PRESETS
-				} // options
-			}]
-    }]
+    rules: [
+      {
+        test: TEST,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false, // The .babelrc file should only be used to transpile config files.
+              comments: false,
+              compact: false,
+              minified: false,
+              plugins: [
+                'array-includes',
+                '@babel/plugin-proposal-object-rest-spread',
+                '@babel/plugin-transform-object-assign'
+              ],
+              presets: BABEL_PRESETS
+            } // options
+          }
+        ]
+      }
+    ]
   },
   optimization: {
-		minimizer: [
-			new UglifyJsPlugin({
-				parallel: true, // highly recommended
-				sourceMap: false/*,
+    minimizer: [
+      new UglifyJsPlugin({
+        parallel: true, // highly recommended
+        sourceMap: false /* ,
 				uglifyOptions: {
 					mangle: false, // default is true?
 					keep_fnames: true // default is false?
 				}*/
-			})
-		]
-	},
+      })
+    ]
+  },
   output: {
-		path: OUTPUT_PATH,
+    path: OUTPUT_PATH,
     filename: '[name].cjs.js',
-		libraryTarget: 'commonjs'
+    libraryTarget: 'commonjs'
   },
   resolve: RESOLVE
-}
+};
 
-//──────────────────────────────────────────────────────────────────────────────
+// ──────────────────────────────────────────────────────────────────────────────
 
 const ESM_CONFIG = {
   context: CONTEXT,
@@ -134,42 +146,40 @@ const ESM_CONFIG = {
   devtool: DEVTOOL,
   mode: MODE,
   module: {
-    rules: [{
-      test: TEST,
-      exclude: /node_modules/,
-      use: [{
-				loader: 'babel-loader',
-				options: {
-					babelrc: false, // The .babelrc file should only be used to transpile config files.
-					comments: false,
-					compact: false,
-					minified: false,
-					plugins: [
-						'array-includes',
-						'@babel/plugin-proposal-object-rest-spread',
-						'@babel/plugin-transform-object-assign'
-					],
-					presets: BABEL_PRESETS
-				} // options
-			}]
-    }]
+    rules: [
+      {
+        test: TEST,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              babelrc: false, // The .babelrc file should only be used to transpile config files.
+              comments: false,
+              compact: false,
+              minified: false,
+              plugins: [
+                'array-includes',
+                '@babel/plugin-proposal-object-rest-spread',
+                '@babel/plugin-transform-object-assign'
+              ],
+              presets: BABEL_PRESETS
+            } // options
+          }
+        ]
+      }
+    ]
   },
   output: {
-		path: OUTPUT_PATH,
+    path: OUTPUT_PATH,
     filename: '[name].esm.js',
-		library: 'LIB',
-		libraryTarget: 'var'
+    library: 'LIB',
+    libraryTarget: 'var'
   },
-  plugins: [
-    new EsmWebpackPlugin()
-  ],
+  plugins: [new EsmWebpackPlugin()],
   resolve: RESOLVE
-}
+};
 
-//──────────────────────────────────────────────────────────────────────────────
+// ──────────────────────────────────────────────────────────────────────────────
 
-export default [
-  UMD_CONFIG,
-  CJS_CONFIG,
-  ESM_CONFIG
-];
+export default [UMD_CONFIG, CJS_CONFIG, ESM_CONFIG];
