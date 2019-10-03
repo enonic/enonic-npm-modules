@@ -3,6 +3,12 @@
 
 == Changelog
 
+=== 0.0.3
+
+* Made schema part of state (so it can be changed by child forms)
+* Added setState action
+* Switch from uglify to terser
+
 === 0.0.2
 
 * Added VisitAllButton

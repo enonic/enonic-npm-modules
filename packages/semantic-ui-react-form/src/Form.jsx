@@ -25,6 +25,7 @@ import {
 	MOVE_UP,
 	REMOVE,
 	RESET,
+	SET_STATE,
 	SET_VALUE,
 	SET_VISITED,
 	SORT,
@@ -48,14 +49,16 @@ export function Form(props) {
 		onChange = () => {/*no-op*/},
 		onDelete,
 		onSubmit,
-		schema = {},
 		validateOnInit = true
 	} = props;
-	//console.debug('Form schema', schema);
 
+	const initialSchema = props.schema ? JSON.parse(JSON.stringify(props.schema)) : {};
 	const initialValues = JSON.parse(JSON.stringify(isFunction(props.initialValues) ? props.initialValues() : props.initialValues));
 
-	function validateValues(values) {
+	function validate({
+		schema,
+		values
+	}) {
 		const errors = {};
 		traverse(schema).forEach(function (x) { // fat-arrow destroys this
 			if (this.notRoot && this.isLeaf && isFunction(x)) {
@@ -66,15 +69,20 @@ export function Form(props) {
 			}
 		});
 		return errors;
-	} // validateValues
+	} // validate
 
 	const initialState = {
 		changes: {},
-		errors: validateOnInit ? validateValues(initialValues) : {},
+		errors: validateOnInit ? validate({
+			values: initialValues,
+			schema: initialSchema
+		}) : {},
+		schema: initialSchema,
 		values: initialValues,
 		visits: {}
 	};
 	//console.debug('Form initialState', initialState);
+
 
 	const reducer = (state, action) => {
 		//console.debug('reducer action', action, 'state', state);
@@ -169,6 +177,10 @@ export function Form(props) {
 			onChange(initialState.values);
 			return initialState;
 		}
+		case SET_STATE: {
+			//console.debug('reducer action', action);
+			return action.value;
+		}
 		case SET_VALUE: {
 			//console.debug('reducer action', action, 'state', state);
 			if (action.value === getIn(state.values, action.path)) {
@@ -212,7 +224,7 @@ export function Form(props) {
 			return state;
 		}
 		case VALIDATE_FIELD: {
-			const fn = getIn(schema, action.path);
+			const fn = getIn(state.schema, action.path);
 			if (!isFunction(fn)) {
 				//console.debug('reducer action', action, "doesn't have a validator function state", state);
 				return state;
@@ -232,7 +244,7 @@ export function Form(props) {
 			const {visitAllFields} = action;
 			const deref = JSON.parse(JSON.stringify(state));
 			const errors = {}; // forgetting old errors here
-			traverse(schema).forEach(function (x) { // fat-arrow destroys this
+			traverse(state.schema).forEach(function (x) { // fat-arrow destroys this
 				if (this.notRoot && this.isLeaf && isFunction(x)) {
 					const path = this.path; //console.debug('path', path);
 					const value = getIn(state.values, path); //console.debug('value', value);
@@ -251,7 +263,7 @@ export function Form(props) {
 		}
 		case VISIT_ALL: {
 			const deref = JSON.parse(JSON.stringify(state));
-			traverse(schema).forEach(function (x) { // fat-arrow destroys this
+			traverse(state.schema).forEach(function (x) { // fat-arrow destroys this
 				if (this.notRoot && this.isLeaf && isFunction(x)) {
 					setIn(deref.visits, this.path, true);
 				}

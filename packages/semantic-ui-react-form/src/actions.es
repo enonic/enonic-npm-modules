@@ -5,6 +5,7 @@ export const MOVE_UP = 'MOVE_UP';
 //const PUSH = 'PUSH';
 export const REMOVE = 'REMOVE';
 export const RESET = 'RESET';
+export const SET_STATE = 'SET_STATE';
 export const SET_VALUE = 'SET_VALUE';
 export const SET_VISITED = 'SET_VISITED';
 export const SORT = 'SORT';
@@ -54,6 +55,11 @@ export const reset = () => ({
 	type: RESET
 });
 
+export const setState = ({value}) => ({
+	type: SET_STATE,
+	value
+});
+
 export const setValue = ({path, value}) => ({
 	path,
 	type: SET_VALUE,
@@ -91,15 +97,3 @@ export const validateForm = ({
 export const visitAll = () => ({
 	type: VISIT_ALL
 });
-
-export const actions = {
-	deleteItem,
-	insert,
-	moveDown,
-	moveUp,
-	setValue,
-	setVisited,
-	sort,
-	validateField,
-	visitAll
-};

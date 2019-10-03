@@ -1,9 +1,9 @@
 export {
-  actions,
 	deleteItem,
 	insert,
 	moveDown,
 	moveUp,
+  setState,
 	setValue,
 	setVisited,
 	sort,

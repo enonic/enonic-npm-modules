@@ -5,6 +5,7 @@
   },
   "contributors": [],
   "dependencies": {
+    "get-value": "^3.0.1",
     "semantic-ui-react": "^0.87.3",
     "traverse": "^0.6.6"
   },
@@ -23,7 +24,7 @@
     "path": "^0.12.7",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
+    "terser-webpack-plugin": "^2.1.2",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9"
   },
@@ -31,7 +32,7 @@
     "/dist",
     "/src"
   ],
-  "homepage": "https://github.com/enonic/enonic-npm-modules/packages/semantic-ui-react-form#readme",
+  "homepage": "https://github.com/enonic/enonic-npm-modules/tree/master/packages/semantic-ui-react-form#readme",
   "keywords": [
     "semantic-ui",
     "react",
@@ -40,11 +41,12 @@
   ],
   "license": "ISC",
   "name": "@enonic/semantic-ui-react-form",
+  "main": "dist/index.umd.js",
   "repository": "https://github.com/enonic/enonic-npm-modules/packages/semantic-ui-react-form",
   "scripts": {
     "prepack": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack"
   },
-  "version": "0.0.2"
+  "version": "0.0.3"
 }

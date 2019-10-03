@@ -1,6 +1,6 @@
 import path from 'path';
 import EsmWebpackPlugin from '@purtuga/esm-webpack-plugin';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin'; // Supports ECMAScript2015
+import TerserPlugin from 'terser-webpack-plugin';
 
 // ──────────────────────────────────────────────────────────────────────────────
 
@@ -21,6 +21,7 @@ const BABEL_PRESETS = [
   '@babel/preset-react'
 ];
 const OUTPUT_PATH = path.join(__dirname, 'dist');
+const PERFORMANCE = { hints: false };
 const RESOLVE = {
   extensions: [
     '.js', // Or node_modules will fail to resolve
@@ -63,17 +64,9 @@ const UMD_CONFIG = {
     ]
   },
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        parallel: true, // highly recommended
-        sourceMap: false /* ,
-				uglifyOptions: {
-					mangle: false, // default is true?
-					keep_fnames: true // default is false?
-				}*/
-      })
-    ]
+    minimizer: [new TerserPlugin()]
   },
+  performance: PERFORMANCE,
   output: {
     path: OUTPUT_PATH,
     filename: '[name].umd.js',
@@ -120,17 +113,9 @@ const CJS_CONFIG = {
     ]
   },
   optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        parallel: true, // highly recommended
-        sourceMap: false /* ,
-				uglifyOptions: {
-					mangle: false, // default is true?
-					keep_fnames: true // default is false?
-				}*/
-      })
-    ]
+    minimizer: [new TerserPlugin()]
   },
+  performance: PERFORMANCE,
   output: {
     path: OUTPUT_PATH,
     filename: '[name].cjs.js',
@@ -171,6 +156,7 @@ const ESM_CONFIG = {
       }
     ]
   },
+  performance: PERFORMANCE,
   output: {
     path: OUTPUT_PATH,
     filename: '[name].esm.js',

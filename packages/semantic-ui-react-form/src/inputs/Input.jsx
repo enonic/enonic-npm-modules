@@ -22,9 +22,10 @@ export function Input(props = {}) {
 		path,
 		validateOnBlur = true,
 		validateOnChange = true,
-		value = getIn(context.values, path),
+		value = getIn(context.values, path, ''),
 		...rest
 	} = props;
+	//console.debug('Input context', context);
 
 
 	//const changed = getIn(context.changes, path);

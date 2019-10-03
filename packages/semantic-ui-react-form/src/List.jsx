@@ -4,10 +4,17 @@ import {getEnonicContext} from './Context';
 
 
 export function List(props) {
-	const {path, render} = props;
+	//console.debug('List props', props);
+
 	const [context, dispatch] = getEnonicContext();
 	//console.debug('List context', context);
-	const array = getIn(context.values, path, []);
-	//console.debug('List array', array);
-	return render(array);
+
+	const {
+		path,
+		render,
+		value = getIn(context, `values.${path}`, [])
+	} = props;
+	//console.debug('List path', path, 'value', value);
+
+	return render(value);
 } // List
