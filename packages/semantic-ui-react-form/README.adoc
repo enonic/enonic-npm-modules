@@ -3,6 +3,10 @@
 
 == Changelog
 
+=== 0.0.4
+
+* Add setSchema action
+
 === 0.0.3
 
 * Made schema part of state (so it can be changed by child forms)

@@ -5,6 +5,7 @@ export const MOVE_UP = 'MOVE_UP';
 //const PUSH = 'PUSH';
 export const REMOVE = 'REMOVE';
 export const RESET = 'RESET';
+export const SET_SCHEMA = 'SET_SCHEMA';
 export const SET_STATE = 'SET_STATE';
 export const SET_VALUE = 'SET_VALUE';
 export const SET_VISITED = 'SET_VISITED';
@@ -53,6 +54,12 @@ export const remove = () => ({
 
 export const reset = () => ({
 	type: RESET
+});
+
+export const setSchema = ({path, schema}) => ({
+	path,
+	type: SET_SCHEMA,
+	schema
 });
 
 export const setState = ({value}) => ({

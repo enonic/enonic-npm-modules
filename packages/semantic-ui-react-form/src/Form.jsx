@@ -25,6 +25,7 @@ import {
 	MOVE_UP,
 	REMOVE,
 	RESET,
+	SET_SCHEMA,
 	SET_STATE,
 	SET_VALUE,
 	SET_VISITED,
@@ -176,6 +177,14 @@ export function Form(props) {
 		case RESET: {
 			onChange(initialState.values);
 			return initialState;
+		}
+		case SET_SCHEMA: {
+			//console.debug('reducer action', action);
+			const {path, schema} = action;
+			const deref = JSON.parse(JSON.stringify(state));
+			setIn(deref.schema, path, schema);
+			//console.debug('reducer action', action, 'state', state, 'deref', deref);
+			return deref;
 		}
 		case SET_STATE: {
 			//console.debug('reducer action', action);

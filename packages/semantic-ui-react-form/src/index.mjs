@@ -3,6 +3,7 @@ export {
 	insert,
 	moveDown,
 	moveUp,
+	setSchema,
   setState,
 	setValue,
 	setVisited,
