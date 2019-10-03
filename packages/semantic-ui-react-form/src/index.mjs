@@ -7,7 +7,8 @@ export {
 	setValue,
 	setVisited,
 	sort,
-	validateField
+	validateField,
+  visitAll
 } from './actions';
 
 export {getEnonicContext} from './Context';
@@ -24,6 +25,7 @@ export {SetValueButton} from './buttons/SetValueButton';
 export {SortButton} from './buttons/SortButton';
 export {SubmitButton} from './buttons/SubmitButton';
 export {ValidateFormButton} from './buttons/ValidateFormButton';
+export {VisitAllButton} from './buttons/VisitAllButton';
 
 export {Checkbox} from './inputs/Checkbox';
 export {Dropdown} from './inputs/Dropdown';

@@ -46,5 +46,5 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }

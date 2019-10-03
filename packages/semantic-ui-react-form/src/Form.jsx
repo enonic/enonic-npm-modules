@@ -30,7 +30,8 @@ import {
 	SORT,
 	SUBMIT,
 	VALIDATE_FIELD,
-	VALIDATE_FORM
+	VALIDATE_FORM,
+	VISIT_ALL
 } from './actions';
 import {EnonicProvider} from './Context';
 
@@ -246,6 +247,15 @@ export function Form(props) {
 			//console.debug('visits', visits);
 			deref.errors = errors;
 			//console.debug('reducer action', action, 'state', state, 'deref', deref);
+			return deref;
+		}
+		case VISIT_ALL: {
+			const deref = JSON.parse(JSON.stringify(state));
+			traverse(schema).forEach(function (x) { // fat-arrow destroys this
+				if (this.notRoot && this.isLeaf && isFunction(x)) {
+					setIn(deref.visits, this.path, true);
+				}
+			});
 			return deref;
 		}
 		default: return state;

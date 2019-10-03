@@ -11,6 +11,7 @@ export const SORT = 'SORT';
 export const SUBMIT = 'SUBMIT';
 export const VALIDATE_FIELD = 'VALIDATE_FIELD';
 export const VALIDATE_FORM = 'VALIDATE_FORM';
+export const VISIT_ALL = 'VISIT_ALL';
 
 
 export const deleteItem = ({index, path}) => ({
@@ -87,6 +88,10 @@ export const validateForm = ({
 	visitAllFields
 });
 
+export const visitAll = () => ({
+	type: VISIT_ALL
+});
+
 export const actions = {
 	deleteItem,
 	insert,
@@ -95,5 +100,6 @@ export const actions = {
 	setValue,
 	setVisited,
 	sort,
-	validateField
+	validateField,
+	visitAll
 };

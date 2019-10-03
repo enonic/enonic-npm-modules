@@ -1,0 +1,8 @@
+= Semantic-UI react form
+:toc: right
+
+== Changelog
+
+=== 0.0.2
+
+* Added VisitAllButton
