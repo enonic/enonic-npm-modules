@@ -7,13 +7,13 @@ import {visit as setVisited} from './visit';
 
 
 export function setValue({
+  action,
   afterValidate = () => {
     /* no-op */
   },
   afterVisit = () => {
     /* no-op */
   },
-  action,
   initialState,
   onChange = () => {
     /* no-op */
@@ -26,15 +26,18 @@ export function setValue({
     value,
     visit = true
   } = action;
-  // console.debug('reducer action', action, 'state', state);
+  // console.debug('setValue path', path, 'value', value, 'validate', validate, 'visit', visit, 'state', state);
+
   if (value === getIn(state.values, path)) {
     // console.debug('reducer action', action, 'did not change state', state);
     return state;
   }
   const deref = cloneDeep(state);
   setIn(deref.values, path, value);
+
   const initialValue = getIn(initialState.values, path);
   setIn(deref.changes, path, value !== initialValue);
+
   // console.debug('reducer state', state, 'action', action, 'deref', deref);
   onChange(deref.values);
   if (visit) {

@@ -3,6 +3,11 @@
 
 == Changelog
 
+=== 0.0.6
+
+* validateOnInit synchronously with useRef before first render
+* setVisited can't short circuit when called from setValue with validate:true
+
 === 0.0.5
 
 * Replaced JSON.parse(JSON.stringify(x)) with cloneDeep(x) in reducer

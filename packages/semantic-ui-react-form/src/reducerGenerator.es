@@ -1,20 +1,4 @@
 /* eslint-disable no-console */
-/*
-
-  validateOnBlur
-    false: onBlur -> setVisited({validate: false})
-    true: onBlur -> setVisited({validate: true}) -> validateForm({ visitAll: false})
-
-  validateOnChange
-  visitOnChange
-
-  onChange -> setValue({validate: true, visit: false}) -> validateForm({ visitAll: false})
-  onChange -> setValue({validate: false, visit: true}) -> setVisited({validate: false})
-  onChange -> setValue({validate: true, visit: true}) -> setVisited -> validateForm({ visitAll: false})
-  onChange -> setValue({validate: false, visit: false}) -> validateForm({ visitAll: false})
-
-*/
-
 import cloneDeep from 'lodash.clonedeep';
 import deepEqual from 'fast-deep-equal';
 import getIn from 'get-value';
@@ -171,7 +155,7 @@ export function reducerGenerator({
         return action.value;
       }
       case SET_VALUE: {
-        return setValue({action, initialState, onChange, state});
+        return setValue({action, afterValidate, afterVisit, initialState, onChange, state});
       }
       case SET_VISITED: {
         return visit({action, afterValidate, afterVisit, state});

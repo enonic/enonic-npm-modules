@@ -123,7 +123,9 @@ export function Form(props) {
   };
   // console.debug('Form initialState', initialState);
 
-  React.useEffect(() => {
+  const isFirstRun = React.useRef(true);
+  if (isFirstRun.current) {
+    isFirstRun.current = false;
     if (validateOnInit) {
       initialState = validateForm({
         afterValidate,
@@ -131,8 +133,7 @@ export function Form(props) {
         visitAllFields: false
       });
     }
-  }, []);
-
+  }
 
   const reducer = reducerGenerator({
     afterValidate,

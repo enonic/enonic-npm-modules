@@ -14,6 +14,7 @@ export function validateForm({
   state = {},
   visitAllFields = false
 }) {
+  // console.debug('validateForm visitAllFields', visitAllFields, 'state', state);
   // const {visitAllFields = false} = action;
   const deref = cloneDeep(state);
   const errors = {}; // forgetting old errors here
