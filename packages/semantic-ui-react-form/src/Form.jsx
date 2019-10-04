@@ -10,282 +10,142 @@ but that could make it impossible to submit a form that is initially valid.)
 
 * When you change or leave a field it should be validated.
 
+--
+
+Lets think about dynamic loaded child form:
+
+? Should the goal be that the root form reflects the total state at all times ?
+* It would be nice to tell who many fields has errors, changes or have been visited in the root form.
+
+! Validating the same field more than once should be avoided
+
+? What if the child form is not the same type of form
+! The root form has no (knowledge, reference, callback) to the child form.
+! The root form can only pass on state via props.
+
+! It would be preferable that the child form conformed to some interface/API definition.
+* Which has a common, importable implementation, so each child form doesn't have to
+  understand the inner workings of the root form.
+
+! Allowing the child form direct access to the root form context seems dangerous.
+
+2 Possibilities:
+1. Blank new form with no child form data
+2. Previously persisted form, perhaps with child form data
+
+How can I know the difference between 1 and 2?
+It should be enough to check whether root.context.values.childFormPath is true
+
+Let's consider option 1:
+
+1. On init, root form has a context with no entries related to the child form.
+2. User pick's a child form in a drop down.
+3. Child form called with root context and dispatch as props.
+4. On child form init, it's context should be applied to root context, which
+   will immediatly trigger "reflow" since root context is changed.
+
+
+5.1 At this point we could either call a validate in the child form,
+    and apply that data to the root form.
+
+5.2 Since the root schema has been changedm run a validate in the root form,
+    and pass on changes to child form
+    (by props? root form as no reference or callback to child form)
+
+. Does user activity in root form affect child form?
+  Yes, running validate in root form, should trigger validate in child form...
+
+. Any user activity in child form, needs to update root form...
 */
 
-import deepEqual from 'fast-deep-equal';
-import getIn from 'get-value';
-import setIn from 'set-value';
-//import {Form as SemanticUiReactForm} from 'semantic-ui-react';
-import traverse from 'traverse';
-
-import {
-	DELETE_ITEM,
-	INSERT,
-	MOVE_DOWN,
-	MOVE_UP,
-	REMOVE,
-	RESET,
-	SET_SCHEMA,
-	SET_STATE,
-	SET_VALUE,
-	SET_VISITED,
-	SORT,
-	SUBMIT,
-	VALIDATE_FIELD,
-	VALIDATE_FORM,
-	VISIT_ALL
-} from './actions';
-import {EnonicProvider} from './Context';
-
-
-function isFunction(value) {
-	return !!(value && value.constructor && value.call && value.apply); // highly performant from underscore
-}
+import cloneDeep from 'lodash.clonedeep';
+// import {Form as SemanticUiReactForm} from 'semantic-ui-react';
+import { EnonicProvider } from './Context';
+import { reducerGenerator } from './reducerGenerator';
+import { validateForm } from './handlers/validateForm';
+import { isFunction } from './utils/isFunction';
 
 
 export function Form(props) {
-	//console.debug('Form props', props);
-	const {
-		children,
-		onChange = () => {/*no-op*/},
-		onDelete,
-		onSubmit,
-		validateOnInit = true
-	} = props;
+  // console.debug('Form props', props);
 
-	const initialSchema = props.schema ? JSON.parse(JSON.stringify(props.schema)) : {};
-	const initialValues = JSON.parse(JSON.stringify(isFunction(props.initialValues) ? props.initialValues() : props.initialValues));
+  const {
+    afterValidate = () => {
+      /* no-op */
+    },
+    afterVisit = () => {
+      /* no-op */
+    },
+    children,
+    onChange = () => {
+      /* no-op */
+    },
+    onDelete = () => {
+      /* no-op */
+    },
+    onSubmit = () => {
+      /* no-op */
+    },
+    validateOnInit = true
+  } = props;
 
-	function validate({
-		schema,
-		values
-	}) {
-		const errors = {};
-		traverse(schema).forEach(function (x) { // fat-arrow destroys this
-			if (this.notRoot && this.isLeaf && isFunction(x)) {
-				const path = this.path; //console.debug('path', path);
-				const value = getIn(values, path); //console.debug('value', value);
-				const newError = x(value); //console.debug('newError', newError);
-				newError && setIn(errors, path, newError);
-			}
-		});
-		return errors;
-	} // validate
+  // const initialSchema = props.schema ? props.schema : {}; // warning no deref!
+  const initialSchema = props.schema ? cloneDeep(props.schema) : {}; // deref
+  // console.debug('Form initialSchema', initialSchema);
 
-	const initialState = {
-		changes: {},
-		errors: validateOnInit ? validate({
-			values: initialValues,
-			schema: initialSchema
-		}) : {},
-		schema: initialSchema,
-		values: initialValues,
-		visits: {}
-	};
-	//console.debug('Form initialState', initialState);
+  const initialValues = cloneDeep(
+    isFunction(props.initialValues)
+      ? props.initialValues()
+      : props.initialValues
+  );
+
+  /* function validate({ schema, values }) {
+    // console.debug('Form validate schema', schema);
+    const errors = {};
+    traverse(schema).forEach(function(x) {
+      // fat-arrow destroys this
+      if (this.notRoot && this.isLeaf && isFunction(x)) {
+        const { path } = this; // console.debug('path', path);
+        const value = getIn(values, path); // console.debug('value', value);
+        const newError = x(value); // console.debug('newError', newError);
+        newError && setIn(errors, path, newError);
+      }
+    });
+    return errors;
+  } // validate */
+
+  let initialState = {
+    changes: {},
+    errors: {},
+    schema: initialSchema,
+    values: initialValues,
+    visits: {}
+  };
+  // console.debug('Form initialState', initialState);
+
+  React.useEffect(() => {
+    if (validateOnInit) {
+      initialState = validateForm({
+        afterValidate,
+        state: initialState,
+        visitAllFields: false
+      });
+    }
+  }, []);
 
 
-	const reducer = (state, action) => {
-		//console.debug('reducer action', action, 'state', state);
-		switch (action.type) {
-		case DELETE_ITEM: {
-			//console.debug('reducer state', state, 'action', action);
-			const deref = JSON.parse(JSON.stringify(state));
-			const array = getIn(deref.values, action.path);
-			//console.debug('reducer state', state, 'action', action, 'array', array);
-			if (!Array.isArray(array)) {
-				return state;
-			}
-			array.splice(action.index, 1);
-			const initialValue = getIn(initialValues, action.path);
-			setIn(deref.changes, action.path, !deepEqual(array, initialValue));
-			//console.debug('reducer action', action, 'state', state, 'deref', deref);
-			onChange(deref.values);
-			return deref;
-		}
-		case INSERT: {
-			//console.debug('reducer state', state, 'action', action);
-			const deref = JSON.parse(JSON.stringify(state));
-			const array = getIn(deref.values, action.path);
-			//console.debug('reducer state', state, 'action', action, 'array', array);
-			if (!Array.isArray(array)) {
-				return state;
-			}
-			array.splice(action.index, 0, action.value);
-			const initialValue = getIn(initialValues, action.path);
-			setIn(deref.changes, action.path, !deepEqual(array, initialValue));
-			//console.debug('reducer state', state, 'action', action, 'array', array);
-			//console.debug('reducer action', action, 'state', state, 'deref', deref);
-			onChange(deref.values);
-			return deref;
-		}
-		case MOVE_DOWN: {
-			const deref = JSON.parse(JSON.stringify(state));
-			const array = getIn(deref.values, action.path);
-			if (!Array.isArray(array)) {
-				console.error(`path: ${action.path}, not an array!`);
-				return state;
-			}
-			if(action.index + 1 >= array.length) {
-				console.error(`path: ${action.path} Can't move item beyond array!`);
-				return state;
-			}
-			const tmp = array[action.index];
-			array[action.index] = array[action.index + 1];
-			array[action.index + 1] = tmp;
-			const initialValue = getIn(initialValues, action.path);
-			setIn(deref.changes, action.path, !deepEqual(array, initialValue));
-			//console.debug('reducer action', action, 'state', state, 'deref', deref);
-			onChange(deref.values);
-			return deref;
-		}
-		case MOVE_UP: {
-			const deref = JSON.parse(JSON.stringify(state));
-			const array = getIn(deref.values, action.path);
-			if (!Array.isArray(array)) {
-				console.error(`path: ${action.path}, not an array!`);
-				return state;
-			}
-			if(action.index === 0) {
-				console.error(`path: ${action.path} Can't move item to index -1!`);
-				return state;
-			}
-			const tmp = array[action.index];
-			array[action.index] = array[action.index - 1];
-			array[action.index - 1] = tmp;
-			const initialValue = getIn(initialValues, action.path);
-			setIn(deref.changes, action.path, !deepEqual(array, initialValue));
-			//console.debug('reducer action', action, 'state', state, 'deref', deref);
-			onChange(deref.values);
-			return deref;
-		}
-		/*case PUSH: {
-			const deref = JSON.parse(JSON.stringify(state));
-			const array = getIn(deref.values, action.path);
-			if (!Array.isArray(array)) {
-				return state;
-			}
-			array.push(action.value)
-			const initialValue = getIn(initialValues, action.path);
-			setIn(deref.changes, action.path, deepEqual(array, initialValue));
-			return deref;
-		}*/
-		case REMOVE: {
-			onDelete(state.values);
-			return state;
-		}
-		case RESET: {
-			onChange(initialState.values);
-			return initialState;
-		}
-		case SET_SCHEMA: {
-			//console.debug('reducer action', action);
-			const {path, schema} = action;
-			const deref = JSON.parse(JSON.stringify(state));
-			setIn(deref.schema, path, schema);
-			//console.debug('reducer action', action, 'state', state, 'deref', deref);
-			return deref;
-		}
-		case SET_STATE: {
-			//console.debug('reducer action', action);
-			return action.value;
-		}
-		case SET_VALUE: {
-			//console.debug('reducer action', action, 'state', state);
-			if (action.value === getIn(state.values, action.path)) {
-				//console.debug('reducer action', action, 'did not change state', state);
-				return state;
-			}
-			const deref = JSON.parse(JSON.stringify(state));
-			setIn(deref.values, action.path, action.value);
-			const initialValue = getIn(initialValues, action.path);
-			setIn(deref.changes, action.path, action.value !== initialValue);
-			//console.debug('reducer state', state, 'action', action, 'deref', deref);
-			onChange(deref.values);
-			return deref;
-		}
-		case SET_VISITED: {
-			if (action.value === getIn(state.visits, action.path)) {
-				//console.debug('reducer action', action, 'did not change state', state);
-				return state;
-			}
-			const deref = JSON.parse(JSON.stringify(state));
-			setIn(deref.visits, action.path, action.value);
-			//console.debug('reducer action', action, 'deref', deref);
-			return deref;
-		}
-		case SORT: {
-			const deref = JSON.parse(JSON.stringify(state));
-			const array = getIn(deref.values, action.path);
-			if (!Array.isArray(array)) {
-				console.error(`path: ${action.path}, not an array!`);
-				return state;
-			}
-			array.sort();
-			const initialValue = getIn(initialValues, action.path);
-			setIn(deref.changes, action.path, !deepEqual(array, initialValue));
-			//console.debug('reducer action', action, 'state', state, 'deref', deref);
-			onChange(deref.values);
-			return deref;
-		}
-		case SUBMIT: {
-			onSubmit(state.values);
-			return state;
-		}
-		case VALIDATE_FIELD: {
-			const fn = getIn(state.schema, action.path);
-			if (!isFunction(fn)) {
-				//console.debug('reducer action', action, "doesn't have a validator function state", state);
-				return state;
-			}
-			const error = fn(action.value);
-			if (error === getIn(state.errors, action.path)) {
-				//console.debug('reducer action', action, 'did not change state', state);
-				return state;
-			}
-			const deref = JSON.parse(JSON.stringify(state));
-			setIn(deref.errors, action.path, error);
-			//console.debug('reducer action', action, 'deref', deref);
-			return deref;
-		}
-		case VALIDATE_FORM: {
-			//console.debug('reducer action', action);
-			const {visitAllFields} = action;
-			const deref = JSON.parse(JSON.stringify(state));
-			const errors = {}; // forgetting old errors here
-			traverse(state.schema).forEach(function (x) { // fat-arrow destroys this
-				if (this.notRoot && this.isLeaf && isFunction(x)) {
-					const path = this.path; //console.debug('path', path);
-					const value = getIn(state.values, path); //console.debug('value', value);
-					//const prevError = getIn(state.errors, path); console.debug('prevError', prevError);
-					const newError = x(value); //console.debug('newError', newError);
-					newError && setIn(errors, path, newError);
-					visitAllFields && setIn(deref.visits, path, true);
-					//console.debug('node', this.node);
-				}
-			});
-			//console.debug('errors', errors);
-			//console.debug('visits', visits);
-			deref.errors = errors;
-			//console.debug('reducer action', action, 'state', state, 'deref', deref);
-			return deref;
-		}
-		case VISIT_ALL: {
-			const deref = JSON.parse(JSON.stringify(state));
-			traverse(state.schema).forEach(function (x) { // fat-arrow destroys this
-				if (this.notRoot && this.isLeaf && isFunction(x)) {
-					setIn(deref.visits, this.path, true);
-				}
-			});
-			return deref;
-		}
-		default: return state;
-		} // switch
-	}; // reducer
+  const reducer = reducerGenerator({
+    afterValidate,
+    afterVisit,
+    initialState,
+    onChange,
+    onDelete,
+    onSubmit
+  });
 
-	return <EnonicProvider
-		children={children}
-		initialState={initialState}
-		reducer={reducer}
-	/>;
+  return (
+    <EnonicProvider initialState={initialState} reducer={reducer}>
+      {children}
+    </EnonicProvider>
+  );
 } // Form

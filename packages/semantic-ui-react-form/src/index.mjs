@@ -3,16 +3,20 @@ export {
 	insert,
 	moveDown,
 	moveUp,
+	setError,
 	setSchema,
   setState,
 	setValue,
 	setVisited,
 	sort,
-	validateField,
+	// validateField,
   visitAll
 } from './actions';
 
-export {getEnonicContext} from './Context';
+export {
+	getEnonicContext,
+	EnonicContext
+} from './Context';
 export {Form} from './Form';
 export {List} from './List';
 

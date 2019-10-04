@@ -3,6 +3,17 @@
 
 == Changelog
 
+=== 0.0.5
+
+* Replaced JSON.parse(JSON.stringify(x)) with cloneDeep(x) in reducer
+* Added afterValidate
+* Added afterVisit
+* Added setError
+* Added validate to setVisited action
+* Added validate and visit to setValue action
+* Removed validateField
+* Refactoring
+
 === 0.0.4
 
 * Add setSchema action
