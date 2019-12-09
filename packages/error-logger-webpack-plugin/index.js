@@ -18,7 +18,7 @@ function ErrorLogger(options) {
 
 // Use regular function on top level to save context
 ErrorLogger.prototype.apply = function apply(compiler) {
-  compiler.plugin('done', stats => {
+  const doneFn = stats => {
     const { errors, warnings } = stats.compilation;
 
     if (stats.hasWarnings()) {
@@ -29,7 +29,9 @@ ErrorLogger.prototype.apply = function apply(compiler) {
       errors.forEach(error => printError(error, this.options.verbose));
       process.exit(1);
     }
-  });
+  };
+
+  compiler.hooks.done.tap(compiler.plugin, doneFn);
 };
 
 module.exports = ErrorLogger;
