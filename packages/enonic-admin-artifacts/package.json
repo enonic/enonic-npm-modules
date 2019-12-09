@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/enonic/enonic-npm-modules/packages/enonic-admin-artifacts#readme",
   "devDependencies": {
-    "less": "^3.8.1"
+    "less": "^3.10.3"
   },
   "engines": {
     "node": ">= 11.9.0",
