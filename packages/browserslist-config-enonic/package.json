@@ -24,8 +24,8 @@
   "homepage": "https://github.com/enonic/enonic-npm-modules/packages/browserslist-config-enonic#readme",
   "license": "GPL-3.0",
   "engines": {
-    "node": ">= 8.9.4",
-    "npm": ">= 5.6.0"
+    "node": ">= 11.9.0",
+    "npm": ">= 6.13.0"
   },
   "devDependencies": {
     "browserslist": "^4.1.0"
