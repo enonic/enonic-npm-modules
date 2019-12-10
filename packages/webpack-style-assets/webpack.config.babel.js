@@ -3,8 +3,7 @@
 
 import path from 'path';
 //const toStr = v => JSON.stringify(v, null, 4);
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin'; // Supports ECMAScript2015
-
+import TerserPlugin from 'terser-webpack-plugin';
 
 const WEBPACK_CONFIG = {
   context: path.resolve(__dirname, 'src'),
@@ -44,9 +43,15 @@ const WEBPACK_CONFIG = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        parallel: true,
-        sourceMap: false
+      new TerserPlugin({
+        sourceMap: true,
+        terserOptions: {
+          compress: {
+            drop_console: false
+           },
+           keep_classnames: true,
+           keep_fnames: true
+        }
       })
     ]
   },

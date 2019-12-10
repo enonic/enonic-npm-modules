@@ -1,6 +1,6 @@
 import path from 'path';
 import EsmWebpackPlugin from '@purtuga/esm-webpack-plugin';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin'; // Supports ECMAScript2015
+import TerserPlugin from 'terser-webpack-plugin';
 
 // ──────────────────────────────────────────────────────────────────────────────
 
@@ -63,13 +63,15 @@ const UMD_CONFIG = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        parallel: true, // highly recommended
-        sourceMap: false /* ,
-				uglifyOptions: {
-					mangle: false, // default is true?
-					keep_fnames: true // default is false?
-				}*/
+      new TerserPlugin({
+        sourceMap: false,
+        terserOptions: {
+          compress: {
+            drop_console: false
+          },
+          keep_classnames: true,
+          keep_fnames: true
+        }
       })
     ]
   },
@@ -120,13 +122,15 @@ const CJS_CONFIG = {
   },
   optimization: {
     minimizer: [
-      new UglifyJsPlugin({
-        parallel: true, // highly recommended
-        sourceMap: false /* ,
-				uglifyOptions: {
-					mangle: false, // default is true?
-					keep_fnames: true // default is false?
-				}*/
+      new TerserPlugin({
+        sourceMap: false,
+        terserOptions: {
+          compress: {
+            drop_console: false
+          },
+          keep_classnames: true,
+          keep_fnames: true
+        }
       })
     ]
   },

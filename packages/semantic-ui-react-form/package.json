@@ -14,7 +14,7 @@
   },
   "description": "Functional Components for Semantic UI React Form",
   "devDependencies": {
-    "webpack": "^4.41.0"
+    "webpack": "^4.41.2"
   },
   "files": [
     "/dist",
