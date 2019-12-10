@@ -2,12 +2,14 @@ import * as path from 'path';
 import {FileData} from '../src/resolve';
 import generate from '../src/generate';
 
+type FileDataExporter = (exports: string[]) => FileData;
+
 describe('generate()', () => {
   test(`Should be find only exported members`, () => {
     const baseFiles = ['data/Dependant.ts', 'data/Dependency.ts'].map(f =>
       path.join(__dirname, f)
     );
-    const createFileData: (exports: string[]) => FileData =
+    const createFileData: FileDataExporter =
       (exports: string[]) => ({ exports, module: '', imports: [], usages: [] });
     const exports: Map<string, FileData> = new Map();
     exports.set(baseFiles[0], createFileData(['Dependant']));

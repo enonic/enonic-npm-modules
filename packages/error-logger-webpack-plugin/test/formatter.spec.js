@@ -56,17 +56,19 @@ describe('Formatter', () => {
 
     let matching = expect.stringMatching(/.+:\s.+/);
     expect(formatError(webpackError)).toEqual(matching);
-    matching = expect.stringMatching(/.+\[\d+,\s\d+\]:\s.+/);
+    matching = expect.stringMatching(/.+:\d+:\d+\s.+/);
     expect(formatError(compilerError)).toEqual(matching);
-    matching = expect.stringMatching(/.+\[\d+,\s\d+\]:\s.+/);
+    matching = expect.stringMatching(/.+:\d+:\d+\s.+/);
     expect(formatError(fileError)).toEqual(matching);
-    matching = expect.stringMatching(/.+\[\d+,\s\d+\]:.+/);
+    matching = expect.stringMatching(/.+:\d+:\d+.+/);
     expect(formatError(tsLoaderErrorLong)).toEqual(matching);
     expect(formatError(tsLoaderErrorShort)).toEqual(matching);
   });
 
   test('should format location', () => {
-    expect(formatLocation({ line: 5, character: 21 })).toEqual(`[5, 21]`);
+    expect(formatLocation({ line: 5, character: 21 })).toEqual(`:5:21`);
+    expect(formatLocation({ line: 10, character: 7 }, true)).toEqual(`:10:7`);
+    expect(formatLocation({ line: 88, character: 19 }, false)).toEqual(`:88`);
     expect(formatLocation({ line: 5 })).toEqual('');
     expect(formatLocation({ character: 21 })).toEqual('');
     expect(formatLocation()).toEqual('');

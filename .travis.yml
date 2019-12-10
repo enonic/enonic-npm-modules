@@ -13,7 +13,7 @@ branches:
   - /^issue-.*$/
 
 node_js:
-  - "9"
+  - "11"
   - "8"
 
 script:

@@ -1,15 +1,16 @@
 const { formatError } = require('./src/formatter');
 
-const printError = (error, showStacktrace) => {
-  console.error(formatError(error, showStacktrace));
+const printError = (error, showStacktrace, showColumn) => {
+  console.error(formatError(error, showStacktrace, showColumn));
 };
 
-const printWarning = (warning, showStacktrace) => {
-  console.warn(formatError(warning, showStacktrace));
+const printWarning = (warning, showStacktrace, showColumn) => {
+  console.warn(formatError(warning, showStacktrace, showColumn));
 };
 
 const defaultOptions = {
-  verbose: false
+  verbose: false,
+  showColumn: true
 };
 
 function ErrorLogger(options) {
@@ -18,18 +19,21 @@ function ErrorLogger(options) {
 
 // Use regular function on top level to save context
 ErrorLogger.prototype.apply = function apply(compiler) {
-  compiler.plugin('done', stats => {
+  const doneFn = stats => {
     const { errors, warnings } = stats.compilation;
+    const { verbose, showColumn } = this.options;
 
     if (stats.hasWarnings()) {
-      warnings.forEach(warning => printWarning(warning, this.options.verbose));
+      warnings.forEach(warning => printWarning(warning, verbose, showColumn));
     }
 
     if (stats.hasErrors()) {
-      errors.forEach(error => printError(error, this.options.verbose));
+      errors.forEach(error => printError(error, verbose, showColumn));
       process.exit(1);
     }
-  });
+  };
+
+  compiler.hooks.done.tap('ErrorLoggerPlugin', doneFn);
 };
 
 module.exports = ErrorLogger;
