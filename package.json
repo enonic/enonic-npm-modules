@@ -21,7 +21,7 @@
     "build": "npm run build --prefix packages/enonic-dependencies-resolver",
     "test": "jest",
     "cover": "jest --coverage",
-    "report": "node_modules/.bin/jest --coverage && cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js",
+    "report": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "precommit": "npm run build && lint-staged",
     "prepush": "npm run build && npm test",
     "prepublish": "npm run build",
