@@ -12,8 +12,7 @@ const WEBPACK_CONFIG = {
     externals: [
         'fs',
         'glob',
-        'path',
-        'uglifyjs-webpack-plugin'
+        'path'
     ],
     devtool: false,
     mode: 'production',
