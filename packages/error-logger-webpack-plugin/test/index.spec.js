@@ -24,7 +24,7 @@ describe('ErrorLogger', () => {
     logger.apply(compiler);
 
     expect(tapSpy).toHaveBeenCalledTimes(1);
-    expect(compiler.plugin.doneFn).not.toBeNull();
+    expect(compiler.doneFn).not.toBeNull();
   });
 
   test('should log errors and warnings when done', () => {
@@ -36,7 +36,7 @@ describe('ErrorLogger', () => {
 
     logger.apply(compiler);
 
-    const { doneFn } = compiler.plugin;
+    const { doneFn } = compiler;
     expect(doneFn).not.toBeNull();
 
     let stats = createStats(true);
@@ -48,6 +48,9 @@ describe('ErrorLogger', () => {
     expect(errorsSpy).toHaveBeenCalledTimes(1);
     expect(mockExit).toHaveBeenCalledWith(ERROR_CODE);
 
+    warningsSpy.mockRestore();
+    errorsSpy.mockRestore();
+
     stats = createStats(false);
     warningsSpy = jest.spyOn(stats.compilation.warnings, 'forEach');
     errorsSpy = jest.spyOn(stats.compilation.errors, 'forEach');
@@ -56,6 +59,8 @@ describe('ErrorLogger', () => {
     expect(warningsSpy).not.toHaveBeenCalled();
     expect(errorsSpy).not.toHaveBeenCalled();
 
+    warningsSpy.mockRestore();
+    errorsSpy.mockRestore();
     mockExit.mockRestore();
   });
 });

@@ -1,25 +1,21 @@
 function createCompiler() {
-  return {
-    plugin: {
-      doneFn: null
-    },
+  const compiler = {
+    doneFn: null,
     hooks: {
-      done: {
-        tap: function tap(plugin, doneFn) {
-          // eslint-disable-next-line no-param-reassign
-          plugin.doneFn = doneFn;
-          return plugin;
-        }
-      }
+      done: {}
     }
   };
+  compiler.hooks.done.tap = (plugin, doneFn) => {
+    compiler.doneFn = doneFn;
+  };
+  return compiler;
 }
 
 function createStats(hasStats = true) {
   return {
     compilation: {
-      warnings: ['warning'],
-      errors: ['error']
+      warnings: ['Test warning.'],
+      errors: ['Test error.']
     },
     hasWarnings: () => hasStats,
     hasErrors: () => hasStats
