@@ -107,8 +107,18 @@ export function webpackEsmAssets(params) {
               } // options
             }
           ]
+        },
+        {
+          test: /\.(c|sa|sc)ss/,
+          use: [
+            {
+              loader: 'css-loader', // translates CSS into CommonJS
+              options: { importLoaders: 1 }
+            },
+            'sass-loader' // compiles Sass to CSS
+          ]
         }
-      ]
+      ] // rules
     }, // module
     optimization,
     output,
