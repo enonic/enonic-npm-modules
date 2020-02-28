@@ -3,6 +3,7 @@
 import glob from 'glob';
 import path from 'path';
 import EsmWebpackPlugin from '@purtuga/esm-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const dict = arr => Object.assign(...arr.map(([k, v]) => ({ [k]: v })));
 // const toStr = v => JSON.stringify(v, null, 4);
@@ -111,6 +112,7 @@ export function webpackEsmAssets(params) {
         {
           test: /\.(c|sa|sc)ss/,
           use: [
+            MiniCssExtractPlugin.loader,
             {
               loader: 'css-loader', // translates CSS into CommonJS
               options: { importLoaders: 1 }
@@ -123,7 +125,12 @@ export function webpackEsmAssets(params) {
     optimization,
     output,
     performance,
-    plugins: plugins.concat(new EsmWebpackPlugin()),
+    plugins: plugins.concat(
+      new EsmWebpackPlugin(),
+      new MiniCssExtractPlugin({
+        filename: `../${DST_ASSETS_DIR}/${outputFilename}.css`
+      })
+    ),
     resolve,
     stats
   };
