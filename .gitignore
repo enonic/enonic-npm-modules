@@ -8,3 +8,4 @@ yarn-error.log
 packages/enonic-dependencies-resolver/index.js
 *.hot-update.*
 hot/
+.gradle/
