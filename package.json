@@ -61,7 +61,7 @@
     "prettier": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "terser-webpack-plugin": "^2.3.5",
+    "terser-webpack-plugin": "^4.0.0",
     "ts-jest": "^25.4.0",
     "typescript": "^3.9.5",
     "webpack": "^4.42.1",
