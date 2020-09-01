@@ -7,7 +7,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "formik": "^1.5.8",
-    "semantic-ui-react": "^0.87.3"
+    "semantic-ui-react": "^1.2.1"
   },
   "description": "Functional Components for Formik and Semantic UI React",
   "devDependencies": {
