@@ -262,17 +262,18 @@
 .content-status-mixin() {
   .equal, .online {
     color: @admin-green;
-    &_pending {
-      color: @admin-orange;
-    }
-    &_expired {
-      color: @admin-red;
-    }
+  }
+  .pending {
+    color: @admin-orange;
+  }
+  .expired {
+    color: @admin-red;
   }
   .offline {
     color: @admin-font-gray1;
   }
   .modified {
+    color: @admin-green;
     font-style: italic;
   }
 }
