@@ -196,7 +196,7 @@
   .material-layer-shadow();
 }
 
-.home-main-container-mixin($opacity: 0.4) {
+.home-main-container-mixin(@opacity: 1, @bgPosition: center) {
   position: fixed;
   left: 0;
   top: 0;
@@ -204,21 +204,21 @@
   bottom: 0;
 
   .center-panel {
+    height: 100%;
     width: 100%;
-    position: absolute;
-    background-color: rgba(0, 0, 0, $opacity);
-    top: 0;
-    bottom: 0;
+    & when not (@opacity = 1) {
+      background-color: rgba(0, 0, 0, @opacity);
+    }
   }
 
   .lazy-image {
     width: 100%;
     min-height: 100%;
-
+    position: absolute;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    background-position: center;
+    background-position: @bgPosition;
 
     transition: opacity 2s;
     &.empty {
