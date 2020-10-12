@@ -196,7 +196,7 @@
   .material-layer-shadow();
 }
 
-.home-main-container-mixin() {
+.home-main-container-mixin($opacity: 0.4) {
   position: fixed;
   left: 0;
   top: 0;
@@ -206,7 +206,7 @@
   .center-panel {
     width: 100%;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, $opacity);
     top: 0;
     bottom: 0;
   }
