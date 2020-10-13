@@ -204,8 +204,11 @@
   bottom: 0;
 
   .center-panel {
-    height: 100%;
-    width: 100%;
+    display: flex;
+    align-content: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
     & when not (@opacity = 1) {
       background-color: rgba(0, 0, 0, @opacity);
     }
