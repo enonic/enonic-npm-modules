@@ -299,10 +299,8 @@
   .button-background(@bg, @hoverBg);
   .button-foreground(@color, @hoverColor, @admin-button-blue1);
   box-sizing: border-box;
-
   display: inline-block;
   padding: 1px 19px;
-  margin: 0;
   cursor: pointer;
 
   span {
@@ -320,6 +318,5 @@
 
 .dialog-button(@color: @form-button-font, @bg: @admin-button-blue2, @hoverColor: @color, @hoverBg: lighten(@bg, 10%), @useFocus: true) {
   .button(@color, @bg, @hoverColor, @hoverBg, @useFocus);
-  padding: 4px 19px 4px 19px;
-  margin-left: 11px;
+  padding: 4px 19px;
 }
