@@ -1,5 +1,5 @@
 import * as glob from 'glob';
-import * as pify from 'pify';
+import pify from 'pify';
 
 const EXCLUDES = [/\.d\.ts$/, /_module.*\.ts$/];
 const isValid = file => !EXCLUDES.some(exclude => exclude.test(file));
