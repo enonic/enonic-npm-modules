@@ -39,7 +39,7 @@
     "@babel/register": "^7.9.0",
     "@purtuga/esm-webpack-plugin": "^1.2.1",
     "@types/jest": "^26.0.8",
-    "@types/node": "^15.12.4",
+    "@types/node": "^16.11.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-array-includes": "^2.0.3",
