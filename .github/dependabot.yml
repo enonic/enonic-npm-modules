@@ -18,6 +18,42 @@ updates:
       - "alansemenov"
     reviewers:
       - "alansemenov"
+  - package-ecosystem: "npm"
+    directory: "/packages/browserlist-config-enonic"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    assignees:
+      - "alansemenov"
+    reviewers:
+      - "alansemenov"
+  - package-ecosystem: "npm"
+    directory: "/packages/enonic-admin-artifacts"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    assignees:
+      - "alansemenov"
+    reviewers:
+      - "alansemenov"
+  - package-ecosystem: "npm"
+    directory: "/packages/enonic-dependencies-resolver"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    assignees:
+      - "alansemenov"
+    reviewers:
+      - "alansemenov"
+  - package-ecosystem: "npm"
+    directory: "/packages/error-logger-webpack-plugin"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    assignees:
+      - "alansemenov"
+    reviewers:
+      - "alansemenov"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
