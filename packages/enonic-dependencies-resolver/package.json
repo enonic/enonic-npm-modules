@@ -31,7 +31,8 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack --watch --hot --colors --progress --info-verbosity verbose",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@types/glob": "^7.1.3",

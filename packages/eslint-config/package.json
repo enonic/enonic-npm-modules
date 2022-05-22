@@ -1,46 +1,46 @@
 {
-    "name": "eslint-config",
-    "version": "1.0.0",
-    "description": "ESLint rules for JavaScript and TypeScript by Enonic.",
-    "main": "index.js",
-    "files": [
-        "index.js",
-        "vanilla.js",
-        "typescript.js",
-        "browser.js",
-        "xp.js"
-    ],
-    "scripts": {
-        "show": "eslint --print-config ./index.js --debug"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/enonic/eslint-config.git#master"
-    },
-    "keywords": [
-        "enonic",
-        "eslint",
-        "lint",
-        "typescript"
-    ],
-    "author": {
-        "name": "Mikita Taukachou",
-        "email": "edloidas@gmail.com",
-        "url": "https://edloidas.github.io/"
-    },
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/enonic/eslint-config/issues"
-    },
-    "homepage": "https://github.com/enonic/eslint-config/tree/master#readme",
-    "peerDependencies": {
-      "@typescript-eslint/eslint-plugin": ">=5.23.0",
-      "@typescript-eslint/parser": ">=5.23.0",
-      "eslint": ">=8",
-      "typescript": ">=2.8.0"
-    },
-    "devDependencies": {
-      "@enonic/eslint-config": "./",
-      "eslint": "^8.15.0"
-    }
+  "name": "eslint-config",
+  "version": "1.0.0",
+  "description": "ESLint rules for JavaScript and TypeScript by Enonic.",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "vanilla.js",
+    "typescript.js",
+    "browser.js",
+    "xp.js"
+  ],
+  "scripts": {
+    "show": "eslint --print-config ./index.js --debug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enonic/eslint-config.git#master"
+  },
+  "keywords": [
+    "enonic",
+    "eslint",
+    "lint",
+    "typescript"
+  ],
+  "author": {
+    "name": "Mikita Taukachou",
+    "email": "edloidas@gmail.com",
+    "url": "https://edloidas.github.io/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enonic/eslint-config/issues"
+  },
+  "homepage": "https://github.com/enonic/eslint-config/tree/master#readme",
+  "peerDependencies": {
+   "@typescript-eslint/eslint-plugin": ">=5.23.0",
+   "@typescript-eslint/parser": ">=5.23.0",
+   "eslint": ">=8",
+   "typescript": ">=2.8.0"
+  },
+  "devDependencies": {
+   "@enonic/eslint-config": "./",
+   "eslint": "^8.15.0"
+  }
 }

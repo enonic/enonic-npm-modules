@@ -23,12 +23,10 @@
     "cover": "jest --coverage",
     "report": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "precommit": "npm run build && lint-staged",
-    "prepush": "npm run build && npm test",
-    "prepublish": "npm run build",
     "lint": "eslint .",
     "fix": "eslint --fix .",
     "publish:all": "lerna publish",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap --ignore-scripts"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -37,7 +35,6 @@
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@babel/register": "^7.9.0",
-    "@purtuga/esm-webpack-plugin": "^1.2.1",
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.21",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
