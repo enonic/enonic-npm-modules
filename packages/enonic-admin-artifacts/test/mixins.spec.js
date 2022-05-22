@@ -8,7 +8,7 @@ const mixinsPath = path.join(__dirname, 'mixins');
 function listLess(basePath) {
   return fs
     .readdirSync(basePath)
-    .map(file => {
+    .map((file) => {
       const filePath = path.join(basePath, file);
       const isDir = fs.statSync(filePath).isDirectory();
       if (isDir) {
@@ -20,7 +20,7 @@ function listLess(basePath) {
 }
 
 describe('Enonic Artifacts', () => {
-  listLess(mixinsPath).forEach(filePath => {
+  listLess(mixinsPath).forEach((filePath) => {
     const relativePath = path.relative(mixinsPath, filePath);
     test(`should be compiled (${relativePath})`, async () => {
       const result = await render(filePath, true);

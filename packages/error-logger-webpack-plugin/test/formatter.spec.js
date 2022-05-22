@@ -3,7 +3,7 @@ const {
   compilerError,
   fileError,
   tsLoaderErrorLong,
-  tsLoaderErrorShort
+  tsLoaderErrorShort,
 } = require('./errors');
 const {
   isTSLoaderError,
@@ -12,7 +12,7 @@ const {
   isFileError,
   formatPath,
   formatLocation,
-  formatError
+  formatError,
 } = require('../src/formatter');
 
 describe('Formatter', () => {
@@ -66,9 +66,9 @@ describe('Formatter', () => {
   });
 
   test('should format location', () => {
-    expect(formatLocation({ line: 5, character: 21 })).toEqual(`:5:21`);
-    expect(formatLocation({ line: 10, character: 7 }, true)).toEqual(`:10:7`);
-    expect(formatLocation({ line: 88, character: 19 }, false)).toEqual(`:88`);
+    expect(formatLocation({ line: 5, character: 21 })).toEqual(':5:21');
+    expect(formatLocation({ line: 10, character: 7 }, true)).toEqual(':10:7');
+    expect(formatLocation({ line: 88, character: 19 }, false)).toEqual(':88');
     expect(formatLocation({ line: 5 })).toEqual('');
     expect(formatLocation({ character: 21 })).toEqual('');
     expect(formatLocation()).toEqual('');

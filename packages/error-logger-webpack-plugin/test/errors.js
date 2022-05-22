@@ -1,19 +1,22 @@
 const webpackError = {
   name: 'EntryModuleNotFoundError',
-  message: `Entry module not found: Error: Can't resolve 'sample-loader' in 'path/to/file'`,
-  details: `Can't resolve 'sample-loader' in 'path/to/file \n./path/to/node_modules/sample-loader doesn't exist'`,
+  message:
+    "Entry module not found: Error: Can't resolve 'sample-loader' in 'path/to/file'",
+  details:
+    "Can't resolve 'sample-loader' in 'path/to/file \n./path/to/node_modules/sample-loader doesn't exist'",
   error: {
-    details: `Can't resolve 'sample-loader' in 'path/to/file \n./path/to/node_modules/sample-loader doesn't exist'`,
-    missing: ['./path/to/node_modules', './path/to/node_modules/sample-loader']
+    details:
+      "Can't resolve 'sample-loader' in 'path/to/file \n./path/to/node_modules/sample-loader doesn't exist'",
+    missing: ['./path/to/node_modules', './path/to/node_modules/sample-loader'],
   },
   dependencies: [
     {
       module: null,
       request: './src/path/to/caller.js',
       userRequest: './src/path/to/caller.js',
-      loc: 'main'
-    }
-  ]
+      loc: 'main',
+    },
+  ],
 };
 
 const compilerError = {
@@ -27,7 +30,7 @@ const compilerError = {
     userRequest: 'absolute/path/to/file.js',
     rawRequest: './relative/path/to/file',
     parser: {
-      _plugins: [{}]
+      _plugins: [{}],
     },
     resource: 'absolute/path/to/file.js',
     loaders: [[{}]],
@@ -41,8 +44,8 @@ const compilerError = {
     issuer: {},
     optional: false,
     useSourceMap: true,
-    cacheable: true
-  }
+    cacheable: true,
+  },
 };
 
 const fileError = {
@@ -50,7 +53,7 @@ const fileError = {
   message: "error number: '=' expected.",
   loaderSource: 'sample-loader',
   location: { line: 5, character: 21 },
-  file: 'absolute/path/to/file.js'
+  file: 'absolute/path/to/file.js',
 };
 
 const tsLoaderErrorLong = {
@@ -60,8 +63,8 @@ const tsLoaderErrorLong = {
   file: undefined,
   loaderSource: 'ts-loader',
   module: {
-    resource: 'C:\\path\\to\\File.ts'
-  }
+    resource: 'C:\\path\\to\\File.ts',
+  },
 };
 
 const tsLoaderErrorShort = {
@@ -69,7 +72,7 @@ const tsLoaderErrorShort = {
     "\u001b[90m[tsl] \u001b[39m\u001b[1m\u001b[31mERROR\u001b[39m\u001b[22m\u001b[1m\u001b[31m in \u001b[39m\u001b[22m\u001b[1m\u001b[36mC:\\path\\to\\File.ts(10,9)\u001b[39m\u001b[22m\r\n\u001b[1m\u001b[31m      TS17009: 'super' must be called before accessing 'this' in the constructor of a derived class.\u001b[39m\u001b[22m",
   location: { line: 10, character: 9 },
   file: 'C:\\path\\to\\File.ts',
-  loaderSource: 'ts-loader'
+  loaderSource: 'ts-loader',
 };
 
 module.exports = {
@@ -77,5 +80,5 @@ module.exports = {
   compilerError,
   fileError,
   tsLoaderErrorLong,
-  tsLoaderErrorShort
+  tsLoaderErrorShort,
 };

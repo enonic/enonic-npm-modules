@@ -3,10 +3,10 @@ module.exports = {
   extends: [
     '@enonic',
     '@enonic/eslint-config/browser',
-    '@enonic/eslint-config/xp'
+    '@enonic/eslint-config/xp',
   ],
   parserOptions: {
     tsconfigRootDir: __dirname,
-    project: 'tsconfig.eslint.json'
-  }
+    project: 'tsconfig.eslint.json',
+  },
 };
