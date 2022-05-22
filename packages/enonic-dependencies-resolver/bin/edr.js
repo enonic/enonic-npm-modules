@@ -23,7 +23,7 @@ const { list, migrate } = require('../index');
       file: file || f,
       level: level || l,
       internal: internal || i,
-      reversed: reversed || r
+      reversed: reversed || r,
     };
     list(argv._[0], flags);
   }

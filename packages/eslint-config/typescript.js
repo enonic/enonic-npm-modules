@@ -19,12 +19,12 @@ module.exports = {
     '@typescript-eslint/semi': ['error'],
     '@typescript-eslint/no-use-before-define': [
       'error',
-      { functions: false, classes: true }
+      { functions: false, classes: true },
     ],
     '@typescript-eslint/member-ordering': ['error'],
     '@typescript-eslint/explicit-function-return-type': [
       'error',
-      { allowExpressions: true }
+      { allowExpressions: true },
     ],
     '@typescript-eslint/unbound-method': ['error', { ignoreStatic: true }],
     '@typescript-eslint/no-unsafe-argument': ['off'],

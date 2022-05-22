@@ -25,11 +25,11 @@
     "precommit": "npm run build && lint-staged",
     "prepush": "npm run build && npm test",
     "prepublish": "npm run build",
-    "lint": "eslint --fix .",
+    "lint": "eslint .",
+    "fix": "eslint --fix .",
     "publish:all": "lerna publish",
     "postinstall": "lerna bootstrap"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.5",

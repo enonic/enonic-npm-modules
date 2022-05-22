@@ -15,8 +15,8 @@ module.exports = {
           resolve(output);
         }
       });
-    }).catch(err => {
+    }).catch((err) => {
       console.error(err);
     });
-  }
+  },
 };

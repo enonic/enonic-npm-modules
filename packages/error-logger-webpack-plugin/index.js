@@ -10,25 +10,25 @@ const printWarning = (warning, showStacktrace, showColumn) => {
 
 const defaultOptions = {
   verbose: false,
-  showColumn: true
+  showColumn: true,
 };
 
 function ErrorLogger(options) {
-  this.options = Object.assign({}, defaultOptions, options);
+  this.options = { ...defaultOptions, ...options };
 }
 
 // Use regular function on top level to save context
 ErrorLogger.prototype.apply = function apply(compiler) {
-  const doneFn = stats => {
+  const doneFn = (stats) => {
     const { errors, warnings } = stats.compilation;
     const { verbose, showColumn } = this.options;
 
     if (stats.hasWarnings()) {
-      warnings.forEach(warning => printWarning(warning, verbose, showColumn));
+      warnings.forEach((warning) => printWarning(warning, verbose, showColumn));
     }
 
     if (stats.hasErrors()) {
-      errors.forEach(error => printError(error, verbose, showColumn));
+      errors.forEach((error) => printError(error, verbose, showColumn));
       process.exit(1);
     }
   };

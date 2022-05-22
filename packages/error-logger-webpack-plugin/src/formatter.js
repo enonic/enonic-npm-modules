@@ -1,6 +1,6 @@
 const path = require('path');
 
-const formatPath = file => (file ? path.normalize(file) : '');
+const formatPath = (file) => (file ? path.normalize(file) : '');
 const formatLocation = (location, showColumn = true) => {
   const valid = location && location.line && location.character;
   if (!valid) {
@@ -12,12 +12,12 @@ const formatLocation = (location, showColumn = true) => {
     : `:${location.line}`;
 };
 
-const isTSLoaderError = err =>
+const isTSLoaderError = (err) =>
   !!(err.loaderSource === 'ts-loader' && err.message && !err.rawMessage);
-const isWebpackError = err => !!(err.name && err.message && err.details);
-const isCompilerError = err =>
+const isWebpackError = (err) => !!(err.name && err.message && err.details);
+const isCompilerError = (err) =>
   !!(err.rawMessage && err.location && err.module && err.module.resource);
-const isFileError = err => !!(err.rawMessage && err.location && err.file);
+const isFileError = (err) => !!(err.rawMessage && err.location && err.file);
 
 const formatError = (error, showStacktrace = false, showColumn = true) => {
   if (showStacktrace) {
@@ -51,5 +51,5 @@ module.exports = {
   isFileError,
   formatPath,
   formatLocation,
-  formatError
+  formatError,
 };

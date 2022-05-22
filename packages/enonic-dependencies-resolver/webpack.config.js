@@ -10,20 +10,20 @@ module.exports = {
     filename: './index.js',
     libraryTarget: 'commonjs',
     hotUpdateChunkFilename: 'hot/[name].hot-update.js',
-    hotUpdateMainFilename: 'hot/hot-update.json'
+    hotUpdateMainFilename: 'hot/hot-update.json',
   },
   target: 'node',
   externals: [nodeExternals()],
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.ts', '.js'],
   },
   module: {
     rules: [
       {
         test: /\.ts$/,
-        use: [{ loader: 'ts-loader' }]
-      }
-    ]
+        use: [{ loader: 'ts-loader' }],
+      },
+    ],
   },
-  mode: isProd ? 'production' : 'development'
+  mode: isProd ? 'production' : 'development',
 };

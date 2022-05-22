@@ -2,8 +2,8 @@ function createCompiler() {
   const compiler = {
     doneFn: null,
     hooks: {
-      done: {}
-    }
+      done: {},
+    },
   };
   compiler.hooks.done.tap = (plugin, doneFn) => {
     compiler.doneFn = doneFn;
@@ -15,14 +15,14 @@ function createStats(hasStats = true) {
   return {
     compilation: {
       warnings: ['Test warning.'],
-      errors: ['Test error.']
+      errors: ['Test error.'],
     },
     hasWarnings: () => hasStats,
-    hasErrors: () => hasStats
+    hasErrors: () => hasStats,
   };
 }
 
 module.exports = {
   createCompiler,
-  createStats
+  createStats,
 };
