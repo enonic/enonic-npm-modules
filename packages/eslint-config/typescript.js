@@ -9,8 +9,6 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   rules: {
-    indent: 'off',
-    '@typescript-eslint/indent': ['error', 4],
     semi: 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['off'],
