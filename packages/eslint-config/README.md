@@ -44,12 +44,12 @@ Some of the rules require `parserServices` to be generated, therefore `project` 
 Aside from `@enonic/eslint-config`, this package contains four more configurations:
 
   __Standalone__
-* `@enonic/eslint-config/vanilla` should replace default configuration, if TypeScript linting is not needed.
+* `@enonic/eslint-config/vanilla` should replace default configuration in JavaScript-only projects.
 * `@enonic/eslint-config/typescript` should replace default configuration in TypeScript-only projects.
 
 __Helpers__
 * `@enonic/eslint-config/browser` adds additional configuration for linting browser files (assets).
-* `@enonic/eslint-config/xp` adds XP global variables and allows to lint files, that will be used by the XP.
+* `@enonic/eslint-config/xp` adds XP global variables and allows to lint files that will be used by XP.
 
 Helpers must be combined with the default, vanilla, or typescript configuration.
 
@@ -88,7 +88,7 @@ Your project may contain both server-side and client-side files. In this case, i
 
 ### Vanilla JavaScript
 
-The defaut configuration will lint TS files. If the project don't use TypeScript, then the `@enonic/eslint-config/vanilla` configuration can be used instead. `project` property must not be specified. No other TS-related peer dependencies must be installed also.
+The default configuration will lint both TS and JS files. If your project doesn't use TypeScript, then `@enonic/eslint-config/vanilla` configuration can be used instead. `project` property must not be specified. No other TS-related peer dependencies must be installed either.
 
 `.eslintrc.json`
 ```diff
