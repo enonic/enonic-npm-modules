@@ -34,13 +34,13 @@
   },
   "homepage": "https://github.com/enonic/eslint-config/tree/master#readme",
   "peerDependencies": {
-   "@typescript-eslint/eslint-plugin": ">=5.23.0",
-   "@typescript-eslint/parser": ">=5.23.0",
-   "eslint": ">=8",
-   "typescript": ">=2.8.0"
+    "@typescript-eslint/eslint-plugin": ">=5.23.0",
+    "@typescript-eslint/parser": ">=5.23.0",
+    "eslint": ">=8",
+    "typescript": ">=2.8.0"
   },
   "devDependencies": {
-   "@enonic/eslint-config": "./",
-   "eslint": "^8.15.0"
+    "@enonic/eslint-config": "./",
+    "eslint": "^8.15.0"
   }
 }
