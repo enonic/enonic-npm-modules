@@ -8,7 +8,6 @@ module.exports = {
     node: true,
   },
   rules: {
-    indent: ['error', 4],
     quotes: ['error', 'single', { avoidEscape: true }],
     'block-spacing': ['error', 'always'],
     'space-before-function-paren': [
