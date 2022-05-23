@@ -1,5 +1,5 @@
 {
-  "name": "eslint-config",
+  "name": "@enonic/eslint-config",
   "version": "1.0.0",
   "description": "ESLint rules for JavaScript and TypeScript by Enonic.",
   "main": "index.js",
