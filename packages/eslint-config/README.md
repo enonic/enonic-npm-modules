@@ -51,7 +51,7 @@ __Helpers__
 * `@enonic/eslint-config/browser` adds additional configuration for linting browser files (assets).
 * `@enonic/eslint-config/xp` adds XP global variables and allows to lint files, that will be used by the XP.
 
-Helpers are __NOT__ standalone and should be combined with the default or vanilla configuration.
+Helpers must be combined with the default, vanilla, or typescript configuration.
 
 ### XP and Browser
 
@@ -90,7 +90,6 @@ Your project may contain both server-side and client-side files. In this case, i
 
 The defaut configuration will lint TS files. If the project don't use TypeScript, then the `@enonic/eslint-config/vanilla` configuration can be used instead. `project` property must not be specified. No other TS-related peer dependencies must be installed also.
 
-
 `.eslintrc.json`
 ```diff
 {
@@ -117,7 +116,7 @@ The defaut configuration will lint TS files. If the project don't use TypeScript
 
 ### TypeScript
 
-When using the TypeScript configuration instead of the default one, `project` property must be moved to the `parserOptions` under the config's root.
+When using the TypeScript configuration instead of the default one, `project` property must be moved to the `parserOptions` under the config's root. This configuration should be prefered over the default one, if you lint TypeScript files only. It simplifies the configuration file a bit.
 
 `.eslintrc.json`
 ```diff
