@@ -1,6 +1,8 @@
+import {describe, expect, test} from '@jest/globals';
 import * as path from 'path';
-import {FileData} from '../src/resolve';
+
 import generate from '../src/generate';
+import {FileData} from '../src/resolve';
 
 type FileDataExporter = (exports: string[]) => FileData;
 

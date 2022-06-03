@@ -1,3 +1,4 @@
+import {describe, expect, test} from '@jest/globals';
 import {ESLint, Linter} from 'eslint';
 import * as path from 'path';
 

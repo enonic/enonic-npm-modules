@@ -1,4 +1,6 @@
+import {describe, expect, test} from '@jest/globals';
 import * as path from 'path';
+
 import resolve from '../src/resolve';
 
 describe('resolve()', () => {
