@@ -52,7 +52,7 @@
   "dependencies": {
     "glob": "^8.0.1",
     "minimist": "^1.2.5",
-    "pify": "^5.0.0"
+    "pify": "^6.0.0"
   },
   "engines": {
     "node": ">= 14.15.0",
