@@ -1,0 +1,24 @@
+{
+  "name": "@enonic/utility-types",
+  "version": "1.0.0",
+  "description": "Enonic utility types for TypeScript applications.",
+  "types": "index.d.ts",
+  "files": [
+    "index.d.ts"
+  ],
+  "repository": "https://github.com/enonic/enonic-npm-modules/tree/HEAD/packages/utility-types",
+  "keywords": [
+    "enonic",
+    "utility",
+    "typescript"
+  ],
+  "author": "Mikita Taukachou <edloidas@gmail.com> (https://edloidas.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enonic/enonic-npm-modules/issues"
+  },
+  "homepage": "https://github.com/enonic/enonic-npm-modules/tree/HEAD#readme",
+  "peerDependencies": {
+    "typescript": ">=2.0.0"
+  }
+}
