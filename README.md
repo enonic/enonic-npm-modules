@@ -12,6 +12,7 @@
 * [error-logger-webpack-plugin](packages/error-logger-webpack-plugin#readme) — A webpack logger, primarily for logging to IntelliJ IDEA terminal.
 * [enonic-dependencies-resolver](packages/enonic-dependencies-resolver#readme) — A CLI tool to generate dependencies graph for selected files.
 * [eslint-config](packages/eslint-config#readme) — A default Enonic's ESLint configuration for TypeScript and JavaScript projects for web and XP.
+* [utility-types](packages/utility-types#readme) — A set of commonly used advanced TypeScript types, allowing to follow the DRY principle.
 
 To install all dependencies in all packages, simply run `npm install` (will run `lerna bootstrap` afterwards).
 
