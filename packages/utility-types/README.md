@@ -80,8 +80,21 @@ const f150: Car = {color: 'gray'};
   // literal union can be of any type
   type Count = LiteralUnion<1 | 2, number>;
   ```
+  <br/>
+* `OneOrMore` — a single item of a type, or an Array of items of that type
+
+  ```ts
+  interface MyNodeType {
+    list: OneOrMore<Item>
+  }
+  const node = connection.get<MyNodeType>(nodeId);
+  const {list} = node;
+  // Will give type error
+  list.map((item) => ...)
+  // No type error, we remembered to handle both single item and array of items
+  forceArray(list).map((item) => ...)
+  ```
 
 ## License
 
 [MIT](LICENSE) © [Enonic](https://enonic.com)
-
