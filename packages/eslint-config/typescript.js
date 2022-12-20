@@ -11,6 +11,7 @@ module.exports = {
   rules: {
     semi: 'off',
     'no-unused-vars': 'off',
+    'constructor-super': ['error'],
     '@typescript-eslint/no-unused-vars': ['off'],
     quotes: 'off',
     '@typescript-eslint/quotes': ['error', 'single', { avoidEscape: true }],
