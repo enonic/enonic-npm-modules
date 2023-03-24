@@ -15,7 +15,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/enonic/eslint-config.git#master"
+    "url": "git+https://github.com/enonic/enonic-npm-modules.git",
+    "directory": "packages/eslint-config"
   },
   "keywords": [
     "enonic",
