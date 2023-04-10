@@ -39,7 +39,7 @@
     "@types/jest": "^28.1.1",
     "@types/node": "^18.0.0",
     "@types/pify": "^5.0.0",
-    "@types/rimraf": "^3.0.0",
+    "@types/rimraf": "^4.0.5",
     "jest": "^28.1.1",
     "rimraf": "^5.0.0",
     "ts-jest": "^28.0.7",
