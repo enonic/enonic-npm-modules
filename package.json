@@ -52,7 +52,7 @@
     "eslint-plugin-react": "^7.30.0",
     "husky": "^8.0.1",
     "jest": "^28.0.3",
-    "lerna": "^6.0.1",
+    "lerna": "^7.0.2",
     "lint-staged": "^13.0.0",
     "path": "^0.12.7",
     "prettier": "^2.6.2",
