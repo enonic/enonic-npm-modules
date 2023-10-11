@@ -263,7 +263,7 @@
 }
 
 .content-status-mixin() {
-  .equal, .online {
+  .equal, .online, .modified, .moved {
     color: @admin-green;
   }
   .pending {
@@ -276,12 +276,10 @@
     color: @admin-font-gray1;
   }
   .modified {
-    color: @admin-green;
     font-style: italic;
   }
-  .deleted {
-    color: @admin-green;
-    text-decoration: line-through;
+  .moved {
+    text-decoration: underline;
   }
 }
 
