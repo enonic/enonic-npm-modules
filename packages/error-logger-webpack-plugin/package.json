@@ -25,8 +25,8 @@
   },
   "homepage": "https://github.com/enonic/enonic-npm-modules/packages/error-logger-webpack-plugin#readme",
   "engines": {
-    "node": ">= 18.17.1",
-    "npm": ">= 9.6.7"
+    "node": ">= 20.9.0",
+    "npm": ">= 10.1.0"
   },
   "gitHead": "2a0f8ef6f5c117d1280e1d04e8e4b49368eae2bc"
 }
