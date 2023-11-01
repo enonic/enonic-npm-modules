@@ -31,8 +31,7 @@
     "precommit": "npm run build && lint-staged",
     "lint": "eslint .",
     "fix": "eslint --fix .",
-    "publish:all": "lerna publish",
-    "postinstall": "lerna bootstrap --ignore-scripts"
+    "publish:all": "lerna publish"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.0.0",
