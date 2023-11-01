@@ -54,6 +54,24 @@ updates:
       - "alansemenov"
     reviewers:
       - "alansemenov"
+  - package-ecosystem: "npm"
+    directory: "/packages/eslint-config"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    assignees:
+      - "alansemenov"
+    reviewers:
+      - "alansemenov"
+  - package-ecosystem: "npm"
+    directory: "/packages/utility-types"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    assignees:
+      - "alansemenov"
+    reviewers:
+      - "alansemenov"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
