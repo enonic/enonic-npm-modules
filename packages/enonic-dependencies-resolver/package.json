@@ -51,8 +51,7 @@
   },
   "dependencies": {
     "glob": "^10.0.0",
-    "minimist": "^1.2.5",
-    "pify": "^6.0.0"
+    "minimist": "^1.2.5"
   },
   "engines": {
     "node": ">= 14.15.0",
