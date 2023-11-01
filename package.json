@@ -20,7 +20,12 @@
   "scripts": {
     "build": "npm-run-all build:**",
     "build:enonic-dependencies-resolver": "npm run build --prefix packages/enonic-dependencies-resolver",
-    "test": "jest",
+    "test": "npm-run-all test:**",
+    "test:browserslist-config-enonic": "jest packages/browserslist-config-enonic",
+    "test:enonic-admin-artifacts": "jest packages/enonic-admin-artifacts",
+    "test:enonic-dependencies-resolver": "npm run test --prefix packages/enonic-dependencies-resolver",
+    "test:error-logger-webpack-plugin": "jest packages/error-logger-webpack-plugin",
+    "test:eslint-config": "jest packages/eslint-config",
     "cover": "jest --coverage",
     "report": "jest --coverage --coverageReporters=text-lcov | coveralls",
     "precommit": "npm run build && lint-staged",
