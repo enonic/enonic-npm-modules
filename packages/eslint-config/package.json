@@ -35,10 +35,9 @@
   },
   "homepage": "https://github.com/enonic/eslint-config/tree/master#readme",
   "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": ">=6.0.0",
-    "@typescript-eslint/parser": ">=6.0.0",
-    "eslint": ">=8.44.0",
-    "typescript": ">=4.3.5"
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
     "@enonic/eslint-config": "./",
