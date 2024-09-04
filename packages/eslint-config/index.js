@@ -1,11 +1,7 @@
-const path = require('path');
+const vanillaConfig = require('./vanilla');
+const tsConfig = require('./typescript');
 
-module.exports = {
-  extends: path.join(__dirname, './vanilla.js'),
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx'],
-      extends: path.join(__dirname, './typescript.js'),
-    },
-  ],
-};
+module.exports = [
+  ...vanillaConfig,
+  ...tsConfig
+]

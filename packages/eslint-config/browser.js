@@ -1,5 +1,9 @@
+const globals = require("globals");
+
 module.exports = {
-  env: {
-    browser: true,
-  },
-};
+  languageOptions: {
+    globals: {
+      ...globals.browser
+    }
+  }
+}
