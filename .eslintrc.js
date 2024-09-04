@@ -1,6 +1,12 @@
 module.exports = {
-  extends: ['airbnb-base', 'prettier'],
-  plugins: ['prettier'],
+  extends: [
+    'airbnb-base',
+    'prettier',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+  ],
+  plugins: ['prettier', 'import'],
   rules: {
     'spaced-comment': ['error', 'always', { exceptions: ['-', '+'] }],
     'no-restricted-syntax': ['off'],
@@ -26,4 +32,12 @@ module.exports = {
     node: true,
     jest: true,
   },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
+      },
+    },
+  },
+  // ...
 };

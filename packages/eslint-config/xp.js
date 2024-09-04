@@ -8,5 +8,5 @@ module.exports = {
       testInstance: 'readonly',
       exports: 'writable',
     },
-  }
-}
+  },
+};
