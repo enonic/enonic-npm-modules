@@ -1,6 +1,6 @@
+const { plugin: tsPlugin, configs: tsConfigs } = require('typescript-eslint');
 const tsParser = require('@typescript-eslint/parser');
-const vanillaConfig = require("./vanilla");
-const { plugin: tsPlugin, configs: tsConfigs } = require("typescript-eslint");
+const vanillaConfig = require('./vanilla');
 
 module.exports = [
   ...vanillaConfig,
