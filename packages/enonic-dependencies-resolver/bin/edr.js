@@ -6,7 +6,6 @@ const argv = require('minimist')(process.argv.slice(2));
 const path = require('path');
 const fs = require('fs');
 
-/* eslint-disable-next-line import/no-unresolved, import/extensions */
 const { list, migrate } = require('../index.js');
 
 (function cmd() {

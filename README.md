@@ -1,8 +1,6 @@
 <h1 align="center">enonic npm modules</h1>
 <p align="center">Basic rules, styles and data shared across apps and libs.<p/>
 
-[![Coverage Status][coveralls-image]][coveralls-url]
-
 ## Usage ##
 
 `enonic-npm-modules` is a monorepo, that contains several developer tools to help building:
@@ -23,6 +21,3 @@ Before publishing the changes in any package, read the [manual](PUBLISH.md).
 ## License ##
 
 [GPL-3.0](LICENSE) © [enonic](https://enonic.com)
-
-[coveralls-url]: https://coveralls.io/github/enonic/enonic-npm-modules?branch=master
-[coveralls-image]: https://coveralls.io/repos/github/enonic/enonic-npm-modules/badge.svg?branch=master
