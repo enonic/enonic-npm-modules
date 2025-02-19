@@ -298,3 +298,17 @@
 .dialog-button(@color: @form-button-font, @bg: @admin-button-blue2, @hoverColor: @color, @hoverBg: lighten(@bg, 10%)) {
   .button(@color, @bg, @hoverColor, @hoverBg, 7px 19px);
 }
+
+.checkbox-right() {
+  display: grid;
+  grid-template-columns: 1fr 44px;
+  grid-template-areas:
+        "data checkbox"
+}
+
+.checkbox-left() {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  grid-template-areas:
+        "checkbox data"
+}
