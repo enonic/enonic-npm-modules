@@ -43,6 +43,6 @@
     "@enonic/eslint-config": "./",
     "@eslint/js": "^9.9.1",
     "eslint": "^9.11.1",
-    "globals": "^15.9.0"
+    "globals": "^16.0.0"
   }
 }
