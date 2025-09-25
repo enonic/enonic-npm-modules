@@ -131,16 +131,15 @@
   }
 }
 
-.watermark-text(@font-size: 16px, @ellipsis: false) {
+.watermark-text(@font-size: 16px, @ellipsis: false, @color: lightgray) {
   font-size: @font-size;
   font-family: @admin-font-family;
-  color: lightgray;
+  color: @color;
   top: 50%;
   text-align: center;
   line-height: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-align: center;
   width: 100%;
   position: absolute;
   & when (@ellipsis = true) {
