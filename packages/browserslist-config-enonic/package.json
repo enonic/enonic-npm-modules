@@ -12,16 +12,16 @@
   "files": [
     "index.js"
   ],
-  "repository": "https://github.com/enonic/enonic-npm-modules/packages/browserslist-config-enonic",
+  "repository": "https://github.com/enonic/npm-modules/packages/browserslist-config-enonic",
   "author": "edloidas <edloidas@gmail.com> (https://edloidas.com)",
   "contributors": [
     "Alan Semenov <ase@enonic.com> (https://enonic.com)",
     "Pavel Milkevich <pmi@enonic.com> (https://enonic.com)"
   ],
   "bugs": {
-    "url": "https://github.com/enonic/enonic-npm-modules/issues"
+    "url": "https://github.com/enonic/npm-modules/issues"
   },
-  "homepage": "https://github.com/enonic/enonic-npm-modules/packages/browserslist-config-enonic#readme",
+  "homepage": "https://github.com/enonic/npm-modules/tree/master/packages/browserslist-config-enonic",
   "license": "GPL-3.0",
   "devDependencies": {
     "browserslist": "^4.21.9"

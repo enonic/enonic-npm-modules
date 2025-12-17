@@ -6,7 +6,7 @@
   "files": [
     "index.d.ts"
   ],
-  "repository": "https://github.com/enonic/enonic-npm-modules/tree/HEAD/packages/utility-types",
+  "repository": "https://github.com/enonic/npm-modules/tree/master/packages/utility-types",
   "keywords": [
     "enonic",
     "utility",
@@ -15,10 +15,10 @@
   "author": "Mikita Taukachou <edloidas@gmail.com> (https://edloidas.github.io/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/enonic/enonic-npm-modules/issues"
+    "url": "https://github.com/enonic/npm-modules/issues"
   },
-  "homepage": "https://github.com/enonic/enonic-npm-modules/tree/HEAD#readme",
+  "homepage": "https://github.com/enonic/npm-modules/tree/master/packages/utility-types",
   "peerDependencies": {
-    "typescript": ">=2.0.0"
+    "typescript": ">=5.0.0"
   }
 }

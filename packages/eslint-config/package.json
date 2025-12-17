@@ -13,11 +13,7 @@
   "scripts": {
     "show": "eslint --print-config ./index.js --debug"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/enonic/enonic-npm-modules.git",
-    "directory": "packages/eslint-config"
-  },
+  "repository": "https://github.com/enonic/npm-modules/packages/eslint-config",
   "keywords": [
     "enonic",
     "eslint",
@@ -33,16 +29,16 @@
   "bugs": {
     "url": "https://github.com/enonic/eslint-config/issues"
   },
-  "homepage": "https://github.com/enonic/eslint-config/tree/master#readme",
+  "homepage": "https://github.com/enonic/npm-modules/packages/eslint-config",
   "peerDependencies": {
     "@typescript-eslint/parser": "^8.39.0",
     "typescript-eslint": "^8.39.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "globals": "^16.0.0"
   },
   "devDependencies": {
     "@enonic/eslint-config": "./",
     "@eslint/js": "^9.33.0",
-    "eslint": "^9.31.0",
-    "globals": "^16.0.0"
+    "eslint": "^9.31.0"
   }
 }

@@ -1,6 +1,6 @@
 Publishing packages
 ===
-Since `enonic-npm-modules` is a monorepo, all packages should be published using [Lerna](https://github.com/lerna/lerna). It's still possible to publish with `npm` or `yarn`, but it's not recommended.
+Since `@enonic/npm-modules` is a monorepo, all packages should be published using [Lerna](https://github.com/lerna/lerna). It's still possible to publish with `npm` or `yarn`, but it's not recommended.
 
 ### Prepare ###
 

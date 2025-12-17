@@ -1,9 +1,9 @@
-<h1 align="center">enonic npm modules</h1>
+<h1 align="center">npm modules</h1>
 <p align="center">Basic rules, styles and data shared across apps and libs.<p/>
 
 ## Usage ##
 
-`enonic-npm-modules` is a monorepo, that contains several developer tools to help building:
+`enonic/npm-modules` is a monorepo, that contains several developer tools to help building:
 
 * [browserslist-config-enonic](packages/browserslist-config-enonic#readme) — Browserslist config with the list of browsers, supported by enonic products.
 * [enonic-admin-artifacts](packages/enonic-admin-artifacts#readme) — Core rules and definitions for styles of enonic applications.
