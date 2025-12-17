@@ -30,11 +30,13 @@
     "url": "https://github.com/enonic/eslint-config/issues"
   },
   "homepage": "https://github.com/enonic/npm-modules/tree/master/packages/eslint-config",
+  "dependencies": {
+    "globals": "^16.0.0"
+  },
   "peerDependencies": {
     "@typescript-eslint/parser": "^8.39.0",
     "typescript-eslint": "^8.39.0",
-    "typescript": "^5.8.3",
-    "globals": "^16.0.0"
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
     "@enonic/eslint-config": "./",
