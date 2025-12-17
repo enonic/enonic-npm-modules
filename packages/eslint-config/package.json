@@ -1,6 +1,6 @@
 {
   "name": "@enonic/eslint-config",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "ESLint rules for JavaScript and TypeScript by Enonic.",
   "main": "index.js",
   "files": [
@@ -13,7 +13,7 @@
   "scripts": {
     "show": "eslint --print-config ./index.js --debug"
   },
-  "repository": "https://github.com/enonic/npm-modules/packages/eslint-config",
+  "repository": "https://github.com/enonic/npm-modules/tree/master/packages/eslint-config",
   "keywords": [
     "enonic",
     "eslint",
@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/enonic/eslint-config/issues"
   },
-  "homepage": "https://github.com/enonic/npm-modules/packages/eslint-config",
+  "homepage": "https://github.com/enonic/npm-modules/tree/master/packages/eslint-config",
   "peerDependencies": {
     "@typescript-eslint/parser": "^8.39.0",
     "typescript-eslint": "^8.39.0",

@@ -17,7 +17,7 @@
     "bin",
     "src"
   ],
-  "repository": "https://github.com/enonic/npm-modules/packages/enonic-dependencies-resolver",
+  "repository": "https://github.com/enonic/npm-modules/tree/master/packages/enonic-dependencies-resolver",
   "author": "edloidas <edloidas@gmail.com> (https://edloidas.com)",
   "contributors": [
     "Alan Semenov <ase@enonic.com> (https://enonic.com)",
@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/enonic/npm-modules/issues"
   },
-  "homepage": "https://github.com/enonic/npm-modules/packages/enonic-dependencies-resolver",
+  "homepage": "https://github.com/enonic/npm-modules/tree/master/packages/enonic-dependencies-resolver",
   "scripts": {
     "build": "webpack",
     "dev": "webpack --watch --hot --colors --progress --info-verbosity verbose",

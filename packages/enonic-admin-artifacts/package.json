@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/enonic/npm-modules/packages/enonic-admin-artifacts"
+    "url": "https://github.com/enonic/npm-modules/tree/master/packages/enonic-admin-artifacts"
   },
   "author": "edloidas <edloidas@gmail.com> (https://edloidas.com)",
   "contributors": [
@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/enonic/npm-modules/issues"
   },
-  "homepage": "https://github.com/enonic/npm-modules/packages/enonic-admin-artifacts",
+  "homepage": "https://github.com/enonic/npm-modules/tree/master/packages/enonic-admin-artifacts",
   "devDependencies": {
     "less": "^4.1.3"
   }

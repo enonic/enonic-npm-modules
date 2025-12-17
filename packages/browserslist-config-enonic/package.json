@@ -12,7 +12,7 @@
   "files": [
     "index.js"
   ],
-  "repository": "https://github.com/enonic/npm-modules/packages/browserslist-config-enonic",
+  "repository": "https://github.com/enonic/npm-modules/tree/master/packages/browserslist-config-enonic",
   "author": "edloidas <edloidas@gmail.com> (https://edloidas.com)",
   "contributors": [
     "Alan Semenov <ase@enonic.com> (https://enonic.com)",
